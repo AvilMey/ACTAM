@@ -11,8 +11,15 @@ const math = create(all, config)
 const c = new AudioContext;
 
 var attack = 0.1;
-var release = 0.5;
-var duration = (attack + release ) *1000;
+var release = 0.2;
+var decay = 0.1;
+var sustain = 0.3;
+
+var filtFreq = 500;
+var Qslider = 4;
+
+var duration = (attack + release + decay + sustain ) *1000;
+var unisonWidth =  10;
 
 var W;
 var H;
@@ -86,23 +93,40 @@ function playOscillators(amps){
     //console.log(amps.length);
     for(i=0; i< amps.length; i++){
         if(amps[i] > 10){
-            f = 440*Math.pow(2,i/12)
-            var o = c.createOscillator();
-            var g = c.createGain();
-            o.frequency.value = f;
-            o.connect(g);
-            g.connect(c.destination);
-            now = c.currentTime;
-            g.gain.setValueAtTime(0, now);
-            //console.log(amps[i])    
-            g.gain.linearRampToValueAtTime(amps[i]/(255*amps.length), now+attack);
-            g.gain.linearRampToValueAtTime(0, now+attack+release);
-            o.start(now);
-            o.stop(now+attack+release);  
+            createOscillators(i,amps[i], 0); 
+            createOscillators(i,amps[i], -unisonWidth); 
+            createOscillators(i,amps[i], unisonWidth); 
         }    
     }
 }
 
+function createOscillators(note, amplitud, detune){
+    f = 440*Math.pow(2,note/12)
+
+    var o = c.createOscillator();
+    var g = c.createGain();
+
+    const filter = c.createBiquadFilter();
+    filter.type = "lowpass";
+    filter.frequency.value = filtFreq;
+    filter.Q.value = Qslider;
+
+    o.type = "sawtooth";
+    o.frequency.value = f;
+    o.detune.value = detune;
+    o.connect(filter);
+    filter.connect(g);
+    g.connect(c.destination);
+
+    now = c.currentTime;
+    g.gain.setValueAtTime(0, now);
+    console.log(note)    
+    g.gain.linearRampToValueAtTime(amplitud/(255*12), now+attack);
+    g.gain.setTargetAtTime(sustain, now+attack, decay);
+    g.gain.linearRampToValueAtTime(0, now+attack+release+decay+sustain);
+    o.start(now);
+    o.stop(now+attack+release+decay+sustain);
+}
 
 //get image from user and plot
 
