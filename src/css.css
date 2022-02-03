@@ -1,0 +1,11 @@
+.table {
+    width: 100px;
+    height:100px;
+    background-color:grey;
+}
+.active {
+    background-color: green;
+}
+.on {
+    background-color:red;
+}
