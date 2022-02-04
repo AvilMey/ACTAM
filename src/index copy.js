@@ -44,9 +44,19 @@ function csvToArray(str, delimiter = ",") {
     var arrayOfArrays = [];
 
     for (var i=0; i<rearrangedArray.length; i+=size) {
-      arrayOfArrays.push(rearrangedArray.slice(i,i+size));
+        arrayOfArrays.push(rearrangedArray.slice(i,i+size));
     }
+
+    array1=arrayOfArrays.slice(0,size);
+    array2=rearrangedArray.slice(size,size*2);
+    array3=rearrangedArray.slice(size*2,size*3);
+    array4=rearrangedArray.slice(size*3,size*4);
+
     console.log(arrayOfArrays);
+    console.log(array1)
+    console.log(array2)
+    console.log(array3)
+    console.log(array4)
 
     return arrayOfArrays;
 }
@@ -134,20 +144,6 @@ async function loops(fileData) {
     for (let i = 0; i < fileData.length; i++) {
       await wait(1000)
       for (let j = 0; j < fileData[i].length; j++) {
-        let func = funcs[i]
-        let val = fileData[i][j]
-        console.log(func)
-        console.log(val)
-        func(val)
-        await wait(400)
-      }
-    }
-  }
-
-  /*async function loops(fileData) {
-    for (let i = 0; i < fileData.length; i++) {
-      await wait(1000)
-      for (let j = 0; j < fileData[i].length; j++) {
         let func = funcs[j]
         let val = fileData[i][j]
         console.log(func)
@@ -156,7 +152,7 @@ async function loops(fileData) {
         await wait(400)
       }
     }
-  }*/
+  }
   
   function wait(ms) {
     return new Promise(r => setTimeout(r, ms));
