@@ -60,37 +60,7 @@ var release=.3;
 
 var gains = {};
 
-function playValue2(note,amp){
-    const o = c.createOscillator();
-    o.frequency.value = Math.pow(2,note/12)*440;
-    var gain = c.createGain();
-    gain.connect(c.destination);
-    o.connect(gain);
-    const now = c.currentTime;
-    gain.gain.setValueAtTime(0,now);
-    gain.gain.linearRampToValueAtTime(amp, now+attack);
-    gain.gain.linearRampToValueAtTime(amp/2,now+decay+attack);
-    gain.gain.linearRampToValueAtTime(0,now+decay+attack+release);
-    o.start()
-    o.stop(now+attack+decay+release);
-  }
- 
-  function playValue(amp){
-    const o = c.createOscillator();
-    o.frequency.value = Math.pow(2,13/12)*440;
-    var gain = c.createGain();
-    gain.connect(c.destination);
-    o.connect(gain);
-    const now = c.currentTime;
-    gain.gain.setValueAtTime(0,now);
-    gain.gain.linearRampToValueAtTime(amp, now+attack);
-    gain.gain.linearRampToValueAtTime(amp/2,now+decay+attack);
-    gain.gain.linearRampToValueAtTime(0,now+decay+attack+release);
-    o.start()
-    o.stop(now+attack+decay+release);
-  }
-
-  function playGuitar(amp){
+  function playMonth(amp){
     const o = c.createOscillator();
     o.frequency.value = Math.pow(2,1/12)*440;
     var gain = c.createGain();
@@ -98,14 +68,14 @@ function playValue2(note,amp){
     o.connect(gain);
     const now = c.currentTime;
     gain.gain.setValueAtTime(0,now);
-    gain.gain.linearRampToValueAtTime(amp, now+attack);
-    gain.gain.linearRampToValueAtTime(amp/2,now+decay+attack);
+    gain.gain.linearRampToValueAtTime(amp/(12*4), now+attack);
+    gain.gain.linearRampToValueAtTime(amp/(12*4*2),now+decay+attack);
     gain.gain.linearRampToValueAtTime(0,now+decay+attack+release);
     o.start()
     o.stop(now+attack+decay+release);
   }
 
-  function playKeyboard(amp){
+  function playAvgTemp(amp){
     const o = c.createOscillator();
     o.frequency.value = Math.pow(2,5/12)*440;
     var gain = c.createGain();
@@ -113,14 +83,14 @@ function playValue2(note,amp){
     o.connect(gain);
     const now = c.currentTime;
     gain.gain.setValueAtTime(0,now);
-    gain.gain.linearRampToValueAtTime(amp, now+attack);
-    gain.gain.linearRampToValueAtTime(amp/2,now+decay+attack);
+    gain.gain.linearRampToValueAtTime(amp/(24*4), now+attack);
+    gain.gain.linearRampToValueAtTime(amp/(24*4*2),now+decay+attack);
     gain.gain.linearRampToValueAtTime(0,now+decay+attack+release);
     o.start()
     o.stop(now+attack+decay+release);
   }
 
-  function playDrums(amp){
+  function playPrecipitation(amp){
     const o = c.createOscillator();
     o.frequency.value = Math.pow(2,9/12)*440;
     var gain = c.createGain();
@@ -128,15 +98,29 @@ function playValue2(note,amp){
     o.connect(gain);
     const now = c.currentTime;
     gain.gain.setValueAtTime(0,now);
-    gain.gain.linearRampToValueAtTime(amp, now+attack);
-    gain.gain.linearRampToValueAtTime(amp/2,now+decay+attack);
+    gain.gain.linearRampToValueAtTime(amp/(150*4), now+attack);
+    gain.gain.linearRampToValueAtTime(amp/(150*4*2),now+decay+attack);
     gain.gain.linearRampToValueAtTime(0,now+decay+attack+release);
     o.start()
     o.stop(now+attack+decay+release);
   }
 
+  function playHumidity(amp){
+    const o = c.createOscillator();
+    o.frequency.value = Math.pow(2,9/12)*440;
+    var gain = c.createGain();
+    gain.connect(c.destination);
+    o.connect(gain);
+    const now = c.currentTime;
+    gain.gain.setValueAtTime(0,now);
+    gain.gain.linearRampToValueAtTime(amp(81*4), now+attack);
+    gain.gain.linearRampToValueAtTime(amp/(81*4*2),now+decay+attack);
+    gain.gain.linearRampToValueAtTime(0,now+decay+attack+release);
+    o.start()
+    o.stop(now+attack+decay+release);
+  }
 
-var funcs=[playGuitar,playGuitar,playKeyboard,playDrums]
+var funcs=[playMonth,playAvgTemp,playPrecipitation,playHumidity]
 
 /* for (let i = 0; i < arrayOfArrays.length; i++) {
     for (let j = 0; j < arrayOfArrays[0].length; j++) {
