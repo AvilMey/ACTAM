@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<html>
+    <head>
+        <link rel="stylesheet" href="/index.1e4ce84f.css">
+    </head>
+    <body>
+        <div id="TitleDiv">
+        <h1 id="Title">IMAGE SONIFICATION</h1>
+        </div>
+
+        <div id="Box1">
+        <button id="hihi">Play</button>
+        <input type="file" id="myFile" content="Load File">
+        <label for="myFile">
+            Select Image
+        </label>
+        </div>
+
+        <img id="realImage" style="border:1px">
+        <img id="myImage" style="border:1px">
+        
+        <canvas id="bar"></canvas>
+
+        <div id="Sounds"> Sounds
+            <button id="Piano">Piano</button>
+            <button id="Acoustic">Acoustic</button>
+            <button id="Edm">Edm</button>
+            <button id="Organ">Organ</button>
+            <button id="Manual">Manual</button>
+        </div>
+
+        <div id="Parameters"> Parameters
+            <div id="Duration2">
+                <p>Duration: <span id="volumeValue-duration2" class="current-value-duration2">1 second</span></p>
+                <div class="knob-surround-duration2">
+
+                    <div id="knob-duration2" class="knob-duration2"></div>
+              
+                    <span class="min-duration2">Min</span>
+                    <span class="max-duration2">Max</span>
+              
+                    <div id="tickContainer-duration2" class="ticks-duration2"></div>
+              
+                  </div>
+            </div>
+
+            <div id="NumTimes">
+                <p>NumTimes: <span id="volumeValue-numTimes" class="current-value-numTimes">1</span></p>
+                <div class="knob-surround-numTimes">
+
+                    <div id="knob-numTimes" class="knob-numTimes"></div>
+              
+                    <span class="min-numTimes">Min</span>
+                    <span class="max-numTimes">Max</span>
+              
+                    <div id="tickContainer-numTimes" class="ticks-numTimes"></div>
+              
+                  </div>
+            </div>
+
+            <div id="Threshold">
+                <p>Threshold: <span id="volumeValue-threshold" class="current-value-threshold">0</span></p>
+                <div class="knob-surround-threshold">
+
+                    <div id="knob-threshold" class="knob-threshold"></div>
+              
+                    <span class="min-threshold">Min</span>
+                    <span class="max-threshold">Max</span>
+              
+                    <div id="tickContainer-threshold" class="ticks-threshold"></div>
+              
+                  </div>
+            </div>
+
+        </div>
+
+        <div id="Scales"> Scale: 
+                <select name="ScaleSelect" id="ScaleSelect">
+                    <option value="Chromatic">Chromatic</option>
+                    <option value="Ionian">Ionian</option>
+                    <option value="Dorian">Dorian</option>
+                    <option value="Phrygian">Phrygian</option>
+                    <option value="Lydian">Lydian</option>
+                    <option value="Mixo">Mixo</option>
+                    <option value="Aeolian">Aeolian</option>
+                    <option value="Locrian">Locrian</option>
+                    <option value="Melodic">Melodic</option>
+                    <option value="Harmonic">Harmonic</option>
+                    <option value="Blues">Blues</option>
+                    <option value="FPenta">FPenta</option>
+                    <option value="CPenta">CPenta</option>
+                    <option value="GPenta">GPenta</option>
+                    <option value="APenta">APenta</option>
+            </select></div>
+        
+
+        <div id="ManualParameters1"> Manual Parameters1
+
+            <div id="Attack">
+                <p id="pAttack">Attack: <span id="volumeValue-attack" class="current-value-attack">0</span></p>
+                <div class="knob-surround-attack">
+
+                    <div id="knob-attack" class="knob-attack"></div>
+              
+                    <span class="min-attack">Min</span>
+                    <span class="max-attack">Max</span>
+              
+                    <div id="tickContainer-attack" class="ticks-attack"></div>
+              
+                  </div>
+            </div>
+
+            <div id="Release">
+                <p id="pRelease">Release: <span id="volumeValue-release" class="current-value-release">0</span></p>
+                <div class="knob-surround-release">
+
+                    <div id="knob-release" class="knob-release"></div>
+              
+                    <span class="min-release">Min</span>
+                    <span class="max-release">Max</span>
+              
+                    <div id="tickContainer-release" class="ticks-release"></div>
+              
+                  </div>
+            </div>
+
+            <div id="Decay">
+                <p id="pDecay">Decay: <span id="volumeValue-decay" class="current-value-decay">0</span></p>
+                <div class="knob-surround-decay">
+
+                    <div id="knob-decay" class="knob-decay"></div>
+              
+                    <span class="min-decay">Min</span>
+                    <span class="max-decay">Max</span>
+              
+                    <div id="tickContainer-decay" class="ticks-decay"></div>
+              
+                  </div>
+            </div>
+
+            <div id="Sustain">
+                <p id="pSustain">Sustain: <span id="volumeValue-sustain" class="current-value-sustain">0</span></p>
+                <div class="knob-surround-sustain">
+
+                    <div id="knob-sustain" class="knob-sustain"></div>
+              
+                    <span class="min-sustain">Min</span>
+                    <span class="max-sustain">Max</span>
+              
+                    <div id="tickContainer-sustain" class="ticks-sustain"></div>
+              
+                  </div>
+            </div>
+
+
+        </div>
+
+    </body>
+    <script src="/index.94538dff.js" defer=""></script>
+    <script src="/index.152e2236.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</html>
+</html>
