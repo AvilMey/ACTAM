@@ -993,7 +993,7 @@ function makeDistortionCurve(amount) {
       volumeKnobDuration2.addEventListener(getMouseDownDuration2(), onMouseDownDuration2); //listen for mouse button click
       document.addEventListener(getMouseUpDuration2(), onMouseUpDuration2); //listen for mouse button release
 
-      createTicksDuration2(27, 0);
+      createTicksDuration2(27, 14);
   }
 
   //on mouse button down

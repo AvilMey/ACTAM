@@ -678,7 +678,7 @@ input[type="file"] {
     -moz-transform: rotate(0deg);
     -o-transform: rotate(0deg);
     -ms-transform: rotate(0deg);
-    transform: rotate(0deg);
+    transform: rotate(133.85deg);
     z-index: 10;
   }
   .knob-duration2:before {

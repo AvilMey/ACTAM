@@ -476,6 +476,10 @@ _functions.acousticButton();
 _functions.edmButton();
 _functions.organButton();
 _functions.manualButton();
+_functions.sineButton();
+_functions.squareButton();
+_functions.sawtoothButton();
+_functions.triangleButton();
 
 },{"./functions":"1mtU9"}],"1mtU9":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
@@ -1443,7 +1447,7 @@ function makeDistortionCurve(amount) {
 function mainDuration2() {
     volumeKnobDuration2.addEventListener(getMouseDownDuration2(), onMouseDownDuration2); //listen for mouse button click
     document.addEventListener(getMouseUpDuration2(), onMouseUpDuration2); //listen for mouse button release
-    createTicksDuration2(27, 0);
+    createTicksDuration2(27, 14);
 }
 //on mouse button down
 function onMouseDownDuration2() {
