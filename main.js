@@ -1,4 +1,4 @@
-import { showImage, playButton, pianoButton, acousticButton, edmButton, organButton, manualButton} from "./functions";
+import { showImage, playButton, pianoButton, acousticButton, edmButton, organButton, manualButton, sineButton, squareButton, sawtoothButton, triangleButton} from "./functions";
 
 
 
@@ -22,4 +22,7 @@ acousticButton();
 edmButton();
 organButton();
 manualButton();
-
+sineButton();
+squareButton();
+sawtoothButton();
+triangleButton();

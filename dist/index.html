@@ -12,7 +12,7 @@
         <div id="Box1">
         <button id="hihi">Play</button>
         <input type="file" id="myFile" content="Load File">
-        <label for="myFile">
+        <label id="Fileinput" for="myFile">
             Select Image
         </label>
         </div>
@@ -33,7 +33,7 @@
         <div id="HideDuration2">Not Manual Mode</div>
         <div id="Parameters"> Parameters
             <div id="Duration2">
-                <p>Duration: <span id="volumeValue-duration2" class="current-value-duration2">1 second</span></p>
+                <p>Duration: <span id="volumeValue-duration2" class="current-value-duration2">0.01 sec</span></p>
                 <div class="knob-surround-duration2">
 
                     <div id="knob-duration2" class="knob-duration2"></div>
@@ -47,7 +47,7 @@
             </div>
 
             <div id="NumTimes">
-                <p>NumTimes: <span id="volumeValue-numTimes" class="current-value-numTimes">1</span></p>
+                <p>NumTimes: <span id="volumeValue-numTimes" class="current-value-numTimes">20</span></p>
                 <div class="knob-surround-numTimes">
 
                     <div id="knob-numTimes" class="knob-numTimes"></div>
@@ -61,7 +61,7 @@
             </div>
 
             <div id="Threshold">
-                <p>Threshold: <span id="volumeValue-threshold" class="current-value-threshold">0</span></p>
+                <p>Threshold: <span id="volumeValue-threshold" class="current-value-threshold">0.4</span></p>
                 <div class="knob-surround-threshold">
 
                     <div id="knob-threshold" class="knob-threshold"></div>
@@ -100,7 +100,7 @@
         <div id="ManualParameters1"> Manual Parameters1
 
             <div id="Attack">
-                <p id="pAttack">Attack: <span id="volumeValue-attack" class="current-value-attack">0</span></p>
+                <p id="pAttack">Attack: <span id="volumeValue-attack" class="current-value-attack">0.06</span></p>
                 <div class="knob-surround-attack">
 
                     <div id="knob-attack" class="knob-attack"></div>
@@ -114,7 +114,7 @@
             </div>
 
             <div id="Release">
-                <p id="pRelease">Release: <span id="volumeValue-release" class="current-value-release">0</span></p>
+                <p id="pRelease">Release: <span id="volumeValue-release" class="current-value-release">0.1</span></p>
                 <div class="knob-surround-release">
 
                     <div id="knob-release" class="knob-release"></div>
@@ -128,7 +128,7 @@
             </div>
 
             <div id="Decay">
-                <p id="pDecay">Decay: <span id="volumeValue-decay" class="current-value-decay">0</span></p>
+                <p id="pDecay">Decay: <span id="volumeValue-decay" class="current-value-decay">0.05</span></p>
                 <div class="knob-surround-decay">
 
                     <div id="knob-decay" class="knob-decay"></div>
@@ -142,7 +142,7 @@
             </div>
 
             <div id="Sustain">
-                <p id="pSustain">Sustain: <span id="volumeValue-sustain" class="current-value-sustain">0</span></p>
+                <p id="pSustain">Sustain: <span id="volumeValue-sustain" class="current-value-sustain">0.15</span></p>
                 <div class="knob-surround-sustain">
 
                     <div id="knob-sustain" class="knob-sustain"></div>
@@ -188,7 +188,7 @@
             </div>
 
             <div id="FiltSlid">
-                <p id="pFiltSlid">FiltQSlider: <span id="volumeValue-filtSlid" class="current-value-filtSlid">1</span></p>
+                <p id="pFiltSlid">Q in decades: <span id="volumeValue-filtSlid" class="current-value-filtSlid">-4</span></p>
                 <div class="knob-surround-filtSlid">
 
                     <div id="knob-filtSlid" class="knob-filtSlid"></div>
@@ -202,7 +202,7 @@
             </div>
 
             <div id="FiltGain">
-                <p id="pFiltGain">Filter Gain: <span id="volumeValue-filtGain" class="current-value-filtGain">-40 dB</span></p>
+                <p id="pFiltGain">Filter Gain: <span id="volumeValue-filtGain" class="current-value-filtGain">0 dB</span></p>
                 <div class="knob-surround-filtGain">
 
                     <div id="knob-filtGain" class="knob-filtGain"></div>
@@ -215,6 +215,107 @@
                   </div>
             </div>
         </div>
+
+        <div id="HideDistortion">Only in Manual Mode</div>
+        <div id="Distortion">Distortion
+         <!-- Rounded switch -->
+            <label class="switchDistortion">
+                <input id="DistCheckBox" type="checkbox">
+                <span class="slider round"></span>
+            </label>
+
+            <div id="DistValue">
+                <p id="pDistValue">Distortion Value: <span id="volumeValue-distValue" class="current-value-distValue">0</span></p>
+                <div class="knob-surround-distValue">
+
+                    <div id="knob-distValue" class="knob-distValue"></div>
+              
+                    <span class="min-distValue">Min</span>
+                    <span class="max-distValue">Max</span>
+              
+                    <div id="tickContainer-distValue" class="ticks-distValue"></div>
+              
+                  </div>
+            </div>
+
+            <div id="DistOver"> DistOver: 
+                <select name="DistOverSelect" id="DistOverSelect">
+                    <option value="none">None</option>
+                    <option value="2x">2x</option>
+                    <option value="4x">4x</option>
+                </select></div>
+
+                <div id="NumFreqs">
+                    <p id="pNumFreqs">Number of frequencies: <span id="volumeValue-numFreqs" class="current-value-numFreqs">12</span></p>
+                    <div class="knob-surround-numFreqs">
+    
+                        <div id="knob-numFreqs" class="knob-numFreqs"></div>
+                  
+                        <span class="min-numFreqs">Min</span>
+                        <span class="max-numFreqs">Max</span>
+                  
+                        <div id="tickContainer-numFreqs" class="ticks-numFreqs"></div>
+                  
+                      </div>
+                </div>
+
+            <!-- Rounded switch -->
+            <label class="switchDetune">
+                <input id="DetuneCheckBox" type="checkbox">
+                <span class="slider round"></span>
+            </label>
+
+            <div id="UnisonWidth">
+                <p id="pUnisonWidth">UnisonWidth Value: <span id="volumeValue-unisonWidth" class="current-value-unisonWidth">0</span></p>
+                <div class="knob-surround-unisonWidth">
+
+                    <div id="knob-unisonWidth" class="knob-unisonWidth"></div>
+              
+                    <span class="min-unisonWidth">Min</span>
+                    <span class="max-unisonWidth">Max</span>
+              
+                    <div id="tickContainer-unisonWidth" class="ticks-unisonWidth"></div>
+              
+                  </div>
+            </div>
+
+            <label id="HarmonicsLabel" for="Harmonics">Harmonics Amplitude (0-2):</label>
+            <input type="number" id="Harmonic1" name="Harmonic1" value="1.0" step="0.1" min="0" max="2">
+            <input type="number" id="Harmonic2" name="Harmonic2" value="1.0" step="0.1" min="0" max="2">
+            <input type="number" id="Harmonic3" name="Harmonic3" value="1.0" step="0.1" min="0" max="2">
+            <input type="number" id="Harmonic4" name="Harmonic4" value="1.0" step="0.1" min="0" max="2">
+            <input type="number" id="Harmonic5" name="Harmonic5" value="1.0" step="0.1" min="0" max="2">
+                
+            </div>
+
+        <div id="HideWaveform">Only in Manual Mode</div>
+        <div id="Waveform"> 
+            <h2>Waveform</h2>
+            <button id="Sine">Sine</button>
+            <button id="Square">Square</button>
+            <button id="Sawtooth">Sawtooth</button>
+            <button id="Triangle">Triangle</button>
+
+            <div id="BaseFreq">
+                <p id="pBaseFreq">Base Freq: <span id="volumeValue-baseFreq" class="current-value-baseFreq">440 Hz</span></p>
+                <div class="knob-surround-baseFreq">
+
+                    <div id="knob-baseFreq" class="knob-baseFreq"></div>
+              
+                    <span class="min-baseFreq">Min</span>
+                    <span class="max-baseFreq">Max</span>
+              
+                    <div id="tickContainer-baseFreq" class="ticks-baseFreq"></div>
+              
+                  </div>
+            </div>
+
+
+
+        </div>
+
+
+        
 
     </body>
     <script src="/index.94538dff.js" defer=""></script>

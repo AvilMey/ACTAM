@@ -494,6 +494,14 @@ parcelHelpers.export(exports, "organButton", ()=>organButton
 );
 parcelHelpers.export(exports, "manualButton", ()=>manualButton
 );
+parcelHelpers.export(exports, "sineButton", ()=>sineButton
+);
+parcelHelpers.export(exports, "squareButton", ()=>squareButton
+);
+parcelHelpers.export(exports, "sawtoothButton", ()=>sawtoothButton
+);
+parcelHelpers.export(exports, "triangleButton", ()=>triangleButton
+);
 var _lodash = require("lodash");
 var _lodashDefault = parcelHelpers.interopDefault(_lodash);
 var _simpleStatistics = require("simple-statistics");
@@ -517,16 +525,16 @@ var threshold = 0.4; //Value from 0 to 1, it is a threshold to decide if a pixel
 //Filter
 var filterTyp = "lowshelf"; // can be: lowpass, highpass, bandpass, lowshelf, highshelf, peaking, notch, allpass
 var filtFreq = 1; // filter freq reference
-var filtQslider = 1; // Some other parameter for the filter that I don't remember, have to be positive
-var filtGain = -40; // Other parameter of the filter. can be either negative or positve
+var filtQslider = -4; // Some other parameter for the filter that I don't remember, have to be positive
+var filtGain = 0; // Other parameter of the filter. can be either negative or positve
 //Distortion
-var ApplyDist = true; // true or false
-var DistValue = 400; //Ammount of distortion
-var DistOver = "2x"; //Oversampling after distortion. Valid values are 'none', '2x', or '4x'. 
+var ApplyDist = "false"; // true or false
+var DistValue = 0; //Ammount of distortion
+var DistOver = "none"; //Oversampling after distortion. Valid values are 'none', '2x', or '4x'.
 var NumFreqs = 12; //How many frequencies we want to have in total
 var NumTimes = 20; //How many time steps we want to have in total 
 var detune1 = true; //Detune the oscilators can only be true or false
-var unisonWidth = 10; //Detune value, it can be a low number, from 1 to 20 more or less
+var unisonWidth = 1; //Detune value, it can be a low number, from 1 to 20 more or less
 var harmonics = [
     1,
     0.5,
@@ -535,6 +543,12 @@ var harmonics = [
     1
 ]; // Weigths for the harmonics, the size of the array is the number of harmonics, and the values are the weigths.
 var duration2 = 1; //Duration of notes when preset synth is used
+// harmonics values
+var harmonic1;
+var harmonic2;
+var harmonic3;
+var harmonic4;
+var harmonic5;
 //------------------------------------
 const duration = (attack + release + decay + sustain) * 1000; // duration when manual
 var norm = 0;
@@ -877,6 +891,78 @@ var startingTickAngleFiltGain = -135;
 var tickContainerFiltGain = document.getElementById("tickContainer-filtGain");
 var volumeKnobFiltGain = document.getElementById("knob-filtGain");
 var boundingRectangleFiltGain = volumeKnobFiltGain.getBoundingClientRect(); //get rectangular geometric data of knob (x, y, width, height)
+// DistValue
+var knobPositionXDistValue;
+var knobPositionYDistValue;
+var mouseXDistValue;
+var mouseYDistValue;
+var knobCenterXDistValue;
+var knobCenterYDistValue;
+var adjacentSideDistValue;
+var oppositeSideDistValue;
+var currentRadiansAngleDistValue;
+var getRadiansInDegreesDistValue;
+var finalAngleInDegreesDistValue;
+var volumeSettingDistValue;
+var tickHighlightPositionDistValue;
+var startingTickAngleDistValue = -135;
+var tickContainerDistValue = document.getElementById("tickContainer-distValue");
+var volumeKnobDistValue = document.getElementById("knob-distValue");
+var boundingRectangleDistValue = volumeKnobDistValue.getBoundingClientRect(); //get rectangular geometric data of knob (x, y, width, height)
+// NumFreqs
+var knobPositionXNumFreqs;
+var knobPositionYNumFreqs;
+var mouseXNumFreqs;
+var mouseYNumFreqs;
+var knobCenterXNumFreqs;
+var knobCenterYNumFreqs;
+var adjacentSideNumFreqs;
+var oppositeSideNumFreqs;
+var currentRadiansAngleNumFreqs;
+var getRadiansInDegreesNumFreqs;
+var finalAngleInDegreesNumFreqs;
+var volumeSettingNumFreqs;
+var tickHighlightPositionNumFreqs;
+var startingTickAngleNumFreqs = -135;
+var tickContainerNumFreqs = document.getElementById("tickContainer-numFreqs");
+var volumeKnobNumFreqs = document.getElementById("knob-numFreqs");
+var boundingRectangleNumFreqs = volumeKnobNumFreqs.getBoundingClientRect(); //get rectangular geometric data of knob (x, y, width, height)
+// UnisonWidth
+var knobPositionXUnisonWidth;
+var knobPositionYUnisonWidth;
+var mouseXUnisonWidth;
+var mouseYUnisonWidth;
+var knobCenterXUnisonWidth;
+var knobCenterYUnisonWidth;
+var adjacentSideUnisonWidth;
+var oppositeSideUnisonWidth;
+var currentRadiansAngleUnisonWidth;
+var getRadiansInDegreesUnisonWidth;
+var finalAngleInDegreesUnisonWidth;
+var volumeSettingUnisonWidth;
+var tickHighlightPositionUnisonWidth;
+var startingTickAngleUnisonWidth = -135;
+var tickContainerUnisonWidth = document.getElementById("tickContainer-unisonWidth");
+var volumeKnobUnisonWidth = document.getElementById("knob-unisonWidth");
+var boundingRectangleUnisonWidth = volumeKnobUnisonWidth.getBoundingClientRect(); //get rectangular geometric data of knob (x, y, width, height)
+// BaseFreq
+var knobPositionXBaseFreq;
+var knobPositionYBaseFreq;
+var mouseXBaseFreq;
+var mouseYBaseFreq;
+var knobCenterXBaseFreq;
+var knobCenterYBaseFreq;
+var adjacentSideBaseFreq;
+var oppositeSideBaseFreq;
+var currentRadiansAngleBaseFreq;
+var getRadiansInDegreesBaseFreq;
+var finalAngleInDegreesBaseFreq;
+var volumeSettingBaseFreq;
+var tickHighlightPositionBaseFreq;
+var startingTickAngleBaseFreq = -135;
+var tickContainerBaseFreq = document.getElementById("tickContainer-baseFreq");
+var volumeKnobBaseFreq = document.getElementById("knob-baseFreq");
+var boundingRectangleBaseFreq = volumeKnobBaseFreq.getBoundingClientRect(); //get rectangular geometric data of knob (x, y, width, height)
 //
 const canvas = document.createElement("canvas");
 const ctx = canvas.getContext("2d");
@@ -890,7 +976,7 @@ function drawLine(x) {
     context.lineTo(x, canv.height);
     context.stroke();    */ var img = document.getElementById("myImage");
     var imagePercentage = img.width / window.screen.width;
-    canv.style.width = x / img.width * imagePercentage * 100 + "%";
+    canv.style.width = x / img.width * imagePercentage * 100 + 0.6 + "%";
     canv.style.height = "30px";
     canv.style.backgroundColor = "green";
 }
@@ -903,11 +989,27 @@ function playButton() {
         var value = e.options[e.selectedIndex].value;
         ScaleType = value;
         console.log(value);
+        // DistOver Select
+        var d = document.getElementById("DistOverSelect");
+        var distOverValue = d.options[d.selectedIndex].value;
+        DistOver = distOverValue;
+        console.log(distOverValue);
         // Filter Select
         var f = document.getElementById("FilterSelect");
         var filterValue = f.options[f.selectedIndex].value;
         filterTyp = filterValue;
         console.log(filterTyp);
+        // Get Armonics
+        harmonic1 = document.getElementById('Harmonic1').value;
+        harmonic2 = document.getElementById('Harmonic2').value;
+        harmonic3 = document.getElementById('Harmonic3').value;
+        harmonic4 = document.getElementById('Harmonic4').value;
+        harmonic5 = document.getElementById('Harmonic5').value;
+        harmonics[0] = harmonic1;
+        harmonics[1] = harmonic2;
+        harmonics[2] = harmonic3;
+        harmonics[3] = harmonic4;
+        harmonics[4] = harmonic5;
         if (SoundType == "piano" || SoundType == "acoustic" || SoundType == "organ" || SoundType == "edm" || SoundType == "manual") {
             if (SoundType != "manual") NumFreqs = Scales[ScaleType].length;
             playImage(normalizeImage(horizontalDerivative(medianFilter(data2Play)), NumFreqs, NumTimes));
@@ -919,6 +1021,12 @@ function pianoButton() {
     document.getElementById('Piano').addEventListener('click', function() {
         $(document).ready(function() {
             $('#HideManualParameters1').delay(1).fadeIn(100);
+        });
+        $(document).ready(function() {
+            $('#HideDistortion').delay(1).fadeIn(100);
+        });
+        $(document).ready(function() {
+            $('#HideWaveform').delay(1).fadeIn(100);
         });
         $(document).ready(function() {
             $('#HideFilter').delay(1).fadeIn(100);
@@ -939,6 +1047,12 @@ function acousticButton() {
             $('#HideManualParameters1').delay(1).fadeIn(100);
         });
         $(document).ready(function() {
+            $('#HideDistortion').delay(1).fadeIn(100);
+        });
+        $(document).ready(function() {
+            $('#HideWaveform').delay(1).fadeIn(100);
+        });
+        $(document).ready(function() {
             $('#HideFilter').delay(1).fadeIn(100);
         });
         $(document).ready(function() {
@@ -955,6 +1069,12 @@ function edmButton() {
     document.getElementById('Edm').addEventListener('click', function() {
         $(document).ready(function() {
             $('#HideManualParameters1').delay(1).fadeIn(100);
+        });
+        $(document).ready(function() {
+            $('#HideDistortion').delay(1).fadeIn(100);
+        });
+        $(document).ready(function() {
+            $('#HideWaveform').delay(1).fadeIn(100);
         });
         $(document).ready(function() {
             $('#HideFilter').delay(1).fadeIn(100);
@@ -975,6 +1095,12 @@ function organButton() {
             $('#HideManualParameters1').delay(1).fadeIn(100);
         });
         $(document).ready(function() {
+            $('#HideDistortion').delay(1).fadeIn(100);
+        });
+        $(document).ready(function() {
+            $('#HideWaveform').delay(1).fadeIn(100);
+        });
+        $(document).ready(function() {
             $('#HideFilter').delay(1).fadeIn(100);
         });
         $(document).ready(function() {
@@ -989,8 +1115,16 @@ function organButton() {
 function manualButton() {
     //document.getElementById('hihi').addEventListener('click',function () { playImage(reduceImage(data2Play)); });
     document.getElementById('Manual').addEventListener('click', function() {
+        SoundType = "manual";
+        console.log(SoundType);
         $(document).ready(function() {
             $('#HideManualParameters1').delay(1).fadeOut(100);
+        });
+        $(document).ready(function() {
+            $('#HideDistortion').delay(1).fadeOut(100);
+        });
+        $(document).ready(function() {
+            $('#HideWaveform').delay(1).fadeOut(100);
         });
         $(document).ready(function() {
             $('#HideFilter').delay(1).fadeOut(100);
@@ -1003,7 +1137,30 @@ function manualButton() {
         });
         document.getElementById("HideScales").style.display = "flex";
         document.getElementById("HideDuration2").style.display = "flex";
-        SoundType = "manual";
+    });
+}
+function sineButton() {
+    document.getElementById('Sine').addEventListener('click', function() {
+        oscType = "sine";
+        console.log(oscType);
+    });
+}
+function squareButton() {
+    document.getElementById('Square').addEventListener('click', function() {
+        oscType = "square";
+        console.log(oscType);
+    });
+}
+function sawtoothButton() {
+    document.getElementById('Sawtooth').addEventListener('click', function() {
+        oscType = "sawtooth";
+        console.log(oscType);
+    });
+}
+function triangleButton() {
+    document.getElementById('Triangle').addEventListener('click', function() {
+        oscType = "triangle";
+        console.log(oscType);
     });
 }
 function playImage(data) {
@@ -1051,6 +1208,9 @@ function selectColumn(array, number) {
 // }
 function playOscillators(amps) {
     console.log(amps.length);
+    // Detune check
+    var isDetune = document.getElementById("DetuneCheckBox").checked;
+    detune1 = isDetune;
     norm = 0;
     for(i = 0; i < amps.length; i++)if (amps[i] > threshold) norm = norm + 1;
     for(i = 0; i < amps.length; i++)if (amps[i] > threshold) {
@@ -1061,10 +1221,12 @@ function playOscillators(amps) {
         if (SoundType == "manual") {
             harmonicsWeigths = math.multiply(harmonics, amps[i]);
             createHarmonics(f, harmonicsWeigths, detune1);
-        } else if (SoundType == "piano") piano.play(Scales[ScaleType][n], 4, duration2);
-        else if (SoundType == "acoustic") acoustic.play(Scales[ScaleType][n], 4, duration2);
-        else if (SoundType == "organ") organ.play(Scales[ScaleType][n], 4, duration2);
-        else if (SoundType == "edm") edm.play(Scales[ScaleType][n], 4, duration2);
+        }
+        if (SoundType == "piano") piano.play(Scales[ScaleType][n], 4, duration2);
+        if (SoundType == "acoustic") acoustic.play(Scales[ScaleType][n], 4, duration2);
+        if (SoundType == "organ") organ.play(Scales[ScaleType][n], 4, duration2);
+        //console.log("volume is " + Synth.getVolume());}
+        if (SoundType == "edm") edm.play(Scales[ScaleType][n], 4, duration2);
     }
 }
 function createOscillators(f, amplitud, detune) {
@@ -1084,15 +1246,19 @@ function createOscillators(f, amplitud, detune) {
     o.type = oscType;
     o.frequency.value = f;
     o.detune.value = detune;
-    if (ApplyDist == true) {
+    var isApplyDist = document.getElementById("DistCheckBox").checked;
+    ApplyDist = isApplyDist;
+    if (ApplyDist) {
         o.connect(distortion);
         distortion.connect(filter);
         filter.connect(g);
         g.connect(c.destination);
+        console.log("Estoy en el apllyDistTrue");
     } else {
         o.connect(filter);
         filter.connect(g);
         g.connect(c.destination);
+        console.log("Estoy en el apllyDistFalse");
     }
     now = c.currentTime;
     //Waveform
@@ -1109,7 +1275,8 @@ function createHarmonics(f, harmonicsWeigths, detune) {
     for(var i = 0; i < harmonicsWeigths.length; i++){
         //console.log(harmonicsWeigths.length);
         createOscillators(f * (i + 1), harmonicsWeigths[i], 0);
-        if (detune == true) {
+        if (detune) {
+            console.log("DetuneTrue");
             createOscillators(f * (i + 1), harmonicsWeigths[i], -unisonWidth);
             createOscillators(f * (i + 1), harmonicsWeigths[i], unisonWidth);
         }
@@ -1137,7 +1304,7 @@ function getImageData(img, realImg) {
     canv.width = img.width;
     canv.style.position = "absolute";
     canv.style.marginLeft = img.x - 8 + "px";
-    canv.style.marginTop = img.y + img.height - 5 + "px";
+    canv.style.marginTop = img.y + img.height + window.scrollY - 5 + "px";
     ctx.drawImage(realImg, 0, 0);
     imageData = ctx.getImageData(0, 0, W, H).data;
     data2Play = image2OneChannel(imageData, H, W);
@@ -1312,12 +1479,12 @@ function onMouseMoveDuration2(event) {
     if (finalAngleInDegreesDuration2 >= 0 && finalAngleInDegreesDuration2 <= 270) {
         volumeKnobDuration2.style.transform = "rotate(" + finalAngleInDegreesDuration2 + "deg)"; //use dynamic CSS transform to rotate volume knob
         //270 degrees maximum freedom of rotation / 100% volume = 1% of volume difference per 2.7 degrees of rotation
-        volumeSettingDuration2 = Math.ceil(finalAngleInDegreesDuration2 * (4 / 270) + 0.7);
-        tickHighlightPositionDuration2 = Math.round(volumeSettingDuration2 * 27 / 5); //interpolate how many ticks need to be highlighted
+        volumeSettingDuration2 = Math.ceil(finalAngleInDegreesDuration2 * (2 / 270) * 100 + 0.007) / 100;
+        tickHighlightPositionDuration2 = Math.round(volumeSettingDuration2 * 27 / 2); //interpolate how many ticks need to be highlighted
         duration2 = volumeSettingDuration2;
         console.log("Dur");
         createTicksDuration2(27, tickHighlightPositionDuration2); //highlight ticks
-        document.getElementById("volumeValue-duration2").innerHTML = volumeSettingDuration2 + " seconds"; //update volume text
+        document.getElementById("volumeValue-duration2").innerHTML = volumeSettingDuration2 + " sec"; //update volume text
     }
 }
 //dynamically create volume knob "ticks"
@@ -1359,7 +1526,7 @@ function mainNumTimes() {
     volumeSettingNumTimes = 1;
     volumeKnobNumTimes.addEventListener(getMouseDownNumTimes(), onMouseDownNumTimes); //listen for mouse button click
     document.addEventListener(getMouseUpNumTimes(), onMouseUpNumTimes); //listen for mouse button release
-    createTicksNumTimes(27, 0);
+    createTicksNumTimes(27, 1);
 }
 //on mouse button down
 function onMouseDownNumTimes() {
@@ -1440,7 +1607,7 @@ function getMouseMoveNumTimes() {
 function mainThreshold() {
     volumeKnobThreshold.addEventListener(getMouseDownThreshold(), onMouseDownThreshold); //listen for mouse button click
     document.addEventListener(getMouseUpThreshold(), onMouseUpThreshold); //listen for mouse button release
-    createTicksThreshold(27, 0);
+    createTicksThreshold(27, 11);
 }
 //on mouse button down
 function onMouseDownThreshold() {
@@ -1521,7 +1688,7 @@ function getMouseMoveThreshold() {
 function mainAttack() {
     volumeKnobAttack.addEventListener(getMouseDownAttack(), onMouseDownAttack); //listen for mouse button click
     document.addEventListener(getMouseUpAttack(), onMouseUpAttack); //listen for mouse button release
-    createTicksAttack(27, 0);
+    createTicksAttack(27, 4);
 }
 //on mouse button down
 function onMouseDownAttack() {
@@ -1683,7 +1850,7 @@ function getMouseMoveRelease() {
 function mainDecay() {
     volumeKnobDecay.addEventListener(getMouseDownDecay(), onMouseDownDecay); //listen for mouse button click
     document.addEventListener(getMouseUpDecay(), onMouseUpDecay); //listen for mouse button decay
-    createTicksDecay(27, 0);
+    createTicksDecay(27, 1);
 }
 //on mouse button down
 function onMouseDownDecay() {
@@ -1764,7 +1931,7 @@ function getMouseMoveDecay() {
 function mainSustain() {
     volumeKnobSustain.addEventListener(getMouseDownSustain(), onMouseDownSustain); //listen for mouse button click
     document.addEventListener(getMouseUpSustain(), onMouseUpSustain); //listen for mouse button sustain
-    createTicksSustain(27, 0);
+    createTicksSustain(27, 4);
 }
 //on mouse button down
 function onMouseDownSustain() {
@@ -2043,9 +2210,9 @@ function onMouseMoveFiltSlid(event) {
     if (finalAngleInDegreesFiltSlid >= 0 && finalAngleInDegreesFiltSlid <= 270) {
         volumeKnobFiltSlid.style.transform = "rotate(" + finalAngleInDegreesFiltSlid + "deg)"; //use dynamic CSS transform to rotate volume knob
         //270 degrees maximum freedom of rotation / 100% volume = 1% of volume difference per 2.7 degrees of rotation
-        volumeSettingFiltSlid = Math.round(finalAngleInDegreesFiltSlid * (9 / 270) + 0.7);
-        tickHighlightPositionFiltSlid = Math.round(volumeSettingFiltSlid * 27 / 10); //interpolate how many ticks need to be highlighted
-        filtQslider = volumeSettingFiltSlid;
+        volumeSettingFiltSlid = Math.round(finalAngleInDegreesFiltSlid * (7 / 270) - 3.7);
+        tickHighlightPositionFiltSlid = Math.round((volumeSettingFiltSlid + 4) * 27 / 7); //interpolate how many ticks need to be highlighted
+        filtQslider = 10 ^ volumeSettingFiltSlid;
         createTicksFiltSlid(27, tickHighlightPositionFiltSlid); //highlight ticks
         document.getElementById("volumeValue-filtSlid").innerHTML = volumeSettingFiltSlid; //update volume text
     }
@@ -2088,7 +2255,7 @@ function getMouseMoveFiltSlid() {
 function mainFiltGain() {
     volumeKnobFiltGain.addEventListener(getMouseDownFiltGain(), onMouseDownFiltGain); //listen for mouse button click
     document.addEventListener(getMouseUpFiltGain(), onMouseUpFiltGain); //listen for mouse button filtGain
-    createTicksFiltGain(27, 0);
+    createTicksFiltGain(27, 14);
 }
 //on mouse button down
 function onMouseDownFiltGain() {
@@ -2165,6 +2332,411 @@ function getMouseMoveFiltGain() {
     if (detectMobileFiltGain() == "desktop") return "mousemove";
     else return "touchmove";
 }
+// DistValue
+function mainDistValue() {
+    volumeKnobDistValue.addEventListener(getMouseDownDistValue(), onMouseDownDistValue); //listen for mouse button click
+    document.addEventListener(getMouseUpDistValue(), onMouseUpDistValue); //listen for mouse button distValue
+    createTicksDistValue(27, 0);
+}
+//on mouse button down
+function onMouseDownDistValue() {
+    document.addEventListener(getMouseMoveDistValue(), onMouseMoveDistValue); //start drag
+}
+//on mouse button distValue
+function onMouseUpDistValue() {
+    document.removeEventListener(getMouseMoveDistValue(), onMouseMoveDistValue); //stop drag
+}
+//compute mouse angle relative to center of volume knob
+//For clarification, see my basic trig explanation at:
+//https://www.quora.com/What-is-the-significance-of-the-number-pi-to-the-universe/answer/Kevin-Lam-15
+function onMouseMoveDistValue(event) {
+    knobPositionXDistValue = boundingRectangleDistValue.left; //get knob's global x position
+    knobPositionYDistValue = boundingRectangleDistValue.top; //get knob's global y position
+    if (detectMobileDistValue() == "desktop") {
+        mouseXDistValue = event.pageX; //get mouse's x global position
+        mouseYDistValue = event.pageY; //get mouse's y global position
+    } else {
+        mouseXDistValue = event.touches[0].pageX; //get finger's x global position
+        mouseYDistValue = event.touches[0].pageY; //get finger's y global position
+    }
+    knobCenterXDistValue = boundingRectangleDistValue.width / 2 + knobPositionXDistValue; //get global horizontal center position of knob relative to mouse position
+    knobCenterYDistValue = boundingRectangleDistValue.height / 2 + knobPositionYDistValue; //get global vertical center position of knob relative to mouse position
+    adjacentSideDistValue = knobCenterXDistValue - mouseXDistValue; //compute adjacent value of imaginary right angle triangle
+    oppositeSideDistValue = knobCenterYDistValue - mouseYDistValue; //compute opposite value of imaginary right angle triangle
+    //arc-tangent function returns circular angle in radians
+    //use atan2() instead of atan() because atan() returns only 180 degree max (PI radians) but atan2() returns four quadrant's 360 degree max (2PI radians)
+    currentRadiansAngleDistValue = Math.atan2(adjacentSideDistValue, oppositeSideDistValue);
+    getRadiansInDegreesDistValue = currentRadiansAngleDistValue * 180 / Math.PI; //convert radians into degrees
+    finalAngleInDegreesDistValue = -(getRadiansInDegreesDistValue - 135); //knob is already starting at -135 degrees due to visual design so 135 degrees needs to be subtracted to compensate for the angle offset, negative value represents clockwise direction
+    //only allow rotate if greater than zero degrees or lesser than 270 degrees
+    if (finalAngleInDegreesDistValue >= 0 && finalAngleInDegreesDistValue <= 270) {
+        volumeKnobDistValue.style.transform = "rotate(" + finalAngleInDegreesDistValue + "deg)"; //use dynamic CSS transform to rotate volume knob
+        //270 degrees maximum freedom of rotation / 100% volume = 1% of volume difference per 2.7 degrees of rotation
+        volumeSettingDistValue = Math.round(finalAngleInDegreesDistValue * (80 / 270) - 39.7);
+        tickHighlightPositionDistValue = Math.round((volumeSettingDistValue + 40) * 27 / 80); //interpolate how many ticks need to be highlighted
+        distValue = volumeSettingDistValue;
+        createTicksDistValue(27, tickHighlightPositionDistValue); //highlight ticks
+        document.getElementById("volumeValue-distValue").innerHTML = volumeSettingDistValue + " dB"; //update volume text
+    }
+}
+//dynamically create volume knob "ticks"
+function createTicksDistValue(numTicks, highlightNumTicks) {
+    //reset first by deleting all existing ticks
+    while(tickContainerDistValue.firstChild)tickContainerDistValue.removeChild(tickContainerDistValue.firstChild);
+    //create ticks
+    for(var i = 0; i < numTicks; i++){
+        var tickDistValue = document.createElement("div");
+        //highlight only the appropriate ticks using dynamic CSS
+        if (i < highlightNumTicks) tickDistValue.className = "tick activetick";
+        else tickDistValue.className = "tick";
+        tickContainerDistValue.appendChild(tickDistValue);
+        tickDistValue.style.transform = "rotate(" + startingTickAngleDistValue + "deg)";
+        startingTickAngleDistValue += 10;
+    }
+    startingTickAngleDistValue = -135; //reset
+}
+//detect for mobile devices from https://www.sitepoint.com/navigator-useragent-mobiles-including-ipad/
+function detectMobileDistValue() {
+    var result = navigator.userAgent.match(/(iphone)|(ipod)|(ipad)|(android)|(blackberry)|(windows phone)|(symbian)/i);
+    if (result !== null) return "mobile";
+    else return "desktop";
+}
+function getMouseDownDistValue() {
+    if (detectMobileDistValue() == "desktop") return "mousedown";
+    else return "touchstart";
+}
+function getMouseUpDistValue() {
+    if (detectMobileDistValue() == "desktop") return "mouseup";
+    else return "touchend";
+}
+function getMouseMoveDistValue() {
+    if (detectMobileDistValue() == "desktop") return "mousemove";
+    else return "touchmove";
+}
+// DistValue
+function mainDistValue() {
+    volumeKnobDistValue.addEventListener(getMouseDownDistValue(), onMouseDownDistValue); //listen for mouse button click
+    document.addEventListener(getMouseUpDistValue(), onMouseUpDistValue); //listen for mouse button distValue
+    createTicksDistValue(27, 0);
+}
+//on mouse button down
+function onMouseDownDistValue() {
+    document.addEventListener(getMouseMoveDistValue(), onMouseMoveDistValue); //start drag
+}
+//on mouse button distValue
+function onMouseUpDistValue() {
+    document.removeEventListener(getMouseMoveDistValue(), onMouseMoveDistValue); //stop drag
+}
+//compute mouse angle relative to center of volume knob
+//For clarification, see my basic trig explanation at:
+//https://www.quora.com/What-is-the-significance-of-the-number-pi-to-the-universe/answer/Kevin-Lam-15
+function onMouseMoveDistValue(event) {
+    knobPositionXDistValue = boundingRectangleDistValue.left; //get knob's global x position
+    knobPositionYDistValue = boundingRectangleDistValue.top; //get knob's global y position
+    if (detectMobileDistValue() == "desktop") {
+        mouseXDistValue = event.pageX; //get mouse's x global position
+        mouseYDistValue = event.pageY; //get mouse's y global position
+    } else {
+        mouseXDistValue = event.touches[0].pageX; //get finger's x global position
+        mouseYDistValue = event.touches[0].pageY; //get finger's y global position
+    }
+    knobCenterXDistValue = boundingRectangleDistValue.width / 2 + knobPositionXDistValue; //get global horizontal center position of knob relative to mouse position
+    knobCenterYDistValue = boundingRectangleDistValue.height / 2 + knobPositionYDistValue; //get global vertical center position of knob relative to mouse position
+    adjacentSideDistValue = knobCenterXDistValue - mouseXDistValue; //compute adjacent value of imaginary right angle triangle
+    oppositeSideDistValue = knobCenterYDistValue - mouseYDistValue; //compute opposite value of imaginary right angle triangle
+    //arc-tangent function returns circular angle in radians
+    //use atan2() instead of atan() because atan() returns only 180 degree max (PI radians) but atan2() returns four quadrant's 360 degree max (2PI radians)
+    currentRadiansAngleDistValue = Math.atan2(adjacentSideDistValue, oppositeSideDistValue);
+    getRadiansInDegreesDistValue = currentRadiansAngleDistValue * 180 / Math.PI; //convert radians into degrees
+    finalAngleInDegreesDistValue = -(getRadiansInDegreesDistValue - 135); //knob is already starting at -135 degrees due to visual design so 135 degrees needs to be subtracted to compensate for the angle offset, negative value represents clockwise direction
+    //only allow rotate if greater than zero degrees or lesser than 270 degrees
+    if (finalAngleInDegreesDistValue >= 0 && finalAngleInDegreesDistValue <= 270) {
+        volumeKnobDistValue.style.transform = "rotate(" + finalAngleInDegreesDistValue + "deg)"; //use dynamic CSS transform to rotate volume knob
+        //270 degrees maximum freedom of rotation / 100% volume = 1% of volume difference per 2.7 degrees of rotation
+        volumeSettingDistValue = Math.round(finalAngleInDegreesDistValue * (400 / 270));
+        tickHighlightPositionDistValue = Math.round(volumeSettingDistValue * 27 / 400); //interpolate how many ticks need to be highlighted
+        DistValue = volumeSettingDistValue;
+        createTicksDistValue(27, tickHighlightPositionDistValue); //highlight ticks
+        document.getElementById("volumeValue-distValue").innerHTML = volumeSettingDistValue; //update volume text
+    }
+}
+//dynamically create volume knob "ticks"
+function createTicksDistValue(numTicks, highlightNumTicks) {
+    //reset first by deleting all existing ticks
+    while(tickContainerDistValue.firstChild)tickContainerDistValue.removeChild(tickContainerDistValue.firstChild);
+    //create ticks
+    for(var i = 0; i < numTicks; i++){
+        var tickDistValue = document.createElement("div");
+        //highlight only the appropriate ticks using dynamic CSS
+        if (i < highlightNumTicks) tickDistValue.className = "tick activetick";
+        else tickDistValue.className = "tick";
+        tickContainerDistValue.appendChild(tickDistValue);
+        tickDistValue.style.transform = "rotate(" + startingTickAngleDistValue + "deg)";
+        startingTickAngleDistValue += 10;
+    }
+    startingTickAngleDistValue = -135; //reset
+}
+//detect for mobile devices from https://www.sitepoint.com/navigator-useragent-mobiles-including-ipad/
+function detectMobileDistValue() {
+    var result = navigator.userAgent.match(/(iphone)|(ipod)|(ipad)|(android)|(blackberry)|(windows phone)|(symbian)/i);
+    if (result !== null) return "mobile";
+    else return "desktop";
+}
+function getMouseDownDistValue() {
+    if (detectMobileDistValue() == "desktop") return "mousedown";
+    else return "touchstart";
+}
+function getMouseUpDistValue() {
+    if (detectMobileDistValue() == "desktop") return "mouseup";
+    else return "touchend";
+}
+function getMouseMoveDistValue() {
+    if (detectMobileDistValue() == "desktop") return "mousemove";
+    else return "touchmove";
+}
+// NumFreqs
+function mainNumFreqs() {
+    volumeKnobNumFreqs.addEventListener(getMouseDownNumFreqs(), onMouseDownNumFreqs); //listen for mouse button click
+    document.addEventListener(getMouseUpNumFreqs(), onMouseUpNumFreqs); //listen for mouse button numFreqs
+    createTicksNumFreqs(27, 12);
+}
+//on mouse button down
+function onMouseDownNumFreqs() {
+    document.addEventListener(getMouseMoveNumFreqs(), onMouseMoveNumFreqs); //start drag
+}
+//on mouse button numFreqs
+function onMouseUpNumFreqs() {
+    document.removeEventListener(getMouseMoveNumFreqs(), onMouseMoveNumFreqs); //stop drag
+}
+//compute mouse angle relative to center of volume knob
+//For clarification, see my basic trig explanation at:
+//https://www.quora.com/What-is-the-significance-of-the-number-pi-to-the-universe/answer/Kevin-Lam-15
+function onMouseMoveNumFreqs(event) {
+    knobPositionXNumFreqs = boundingRectangleNumFreqs.left; //get knob's global x position
+    knobPositionYNumFreqs = boundingRectangleNumFreqs.top; //get knob's global y position
+    if (detectMobileNumFreqs() == "desktop") {
+        mouseXNumFreqs = event.pageX; //get mouse's x global position
+        mouseYNumFreqs = event.pageY; //get mouse's y global position
+    } else {
+        mouseXNumFreqs = event.touches[0].pageX; //get finger's x global position
+        mouseYNumFreqs = event.touches[0].pageY; //get finger's y global position
+    }
+    knobCenterXNumFreqs = boundingRectangleNumFreqs.width / 2 + knobPositionXNumFreqs; //get global horizontal center position of knob relative to mouse position
+    knobCenterYNumFreqs = boundingRectangleNumFreqs.height / 2 + knobPositionYNumFreqs; //get global vertical center position of knob relative to mouse position
+    adjacentSideNumFreqs = knobCenterXNumFreqs - mouseXNumFreqs; //compute adjacent value of imaginary right angle triangle
+    oppositeSideNumFreqs = knobCenterYNumFreqs - mouseYNumFreqs; //compute opposite value of imaginary right angle triangle
+    //arc-tangent function returns circular angle in radians
+    //use atan2() instead of atan() because atan() returns only 180 degree max (PI radians) but atan2() returns four quadrant's 360 degree max (2PI radians)
+    currentRadiansAngleNumFreqs = Math.atan2(adjacentSideNumFreqs, oppositeSideNumFreqs);
+    getRadiansInDegreesNumFreqs = currentRadiansAngleNumFreqs * 180 / Math.PI; //convert radians into degrees
+    finalAngleInDegreesNumFreqs = -(getRadiansInDegreesNumFreqs - 135); //knob is already starting at -135 degrees due to visual design so 135 degrees needs to be subtracted to compensate for the angle offset, negative value represents clockwise direction
+    //only allow rotate if greater than zero degrees or lesser than 270 degrees
+    if (finalAngleInDegreesNumFreqs >= 0 && finalAngleInDegreesNumFreqs <= 270) {
+        volumeKnobNumFreqs.style.transform = "rotate(" + finalAngleInDegreesNumFreqs + "deg)"; //use dynamic CSS transform to rotate volume knob
+        //270 degrees maximum freedom of rotation / 100% volume = 1% of volume difference per 2.7 degrees of rotation
+        volumeSettingNumFreqs = Math.round(finalAngleInDegreesNumFreqs * (25 / 270) + 0.7);
+        tickHighlightPositionNumFreqs = Math.round(volumeSettingNumFreqs * 27 / 26); //interpolate how many ticks need to be highlighted
+        NumFreqs = volumeSettingNumFreqs;
+        createTicksNumFreqs(27, tickHighlightPositionNumFreqs); //highlight ticks
+        document.getElementById("volumeValue-numFreqs").innerHTML = volumeSettingNumFreqs; //update volume text
+    }
+}
+//dynamically create volume knob "ticks"
+function createTicksNumFreqs(numTicks, highlightNumTicks) {
+    //reset first by deleting all existing ticks
+    while(tickContainerNumFreqs.firstChild)tickContainerNumFreqs.removeChild(tickContainerNumFreqs.firstChild);
+    //create ticks
+    for(var i = 0; i < numTicks; i++){
+        var tickNumFreqs = document.createElement("div");
+        //highlight only the appropriate ticks using dynamic CSS
+        if (i < highlightNumTicks) tickNumFreqs.className = "tick activetick";
+        else tickNumFreqs.className = "tick";
+        tickContainerNumFreqs.appendChild(tickNumFreqs);
+        tickNumFreqs.style.transform = "rotate(" + startingTickAngleNumFreqs + "deg)";
+        startingTickAngleNumFreqs += 10;
+    }
+    startingTickAngleNumFreqs = -135; //reset
+}
+//detect for mobile devices from https://www.sitepoint.com/navigator-useragent-mobiles-including-ipad/
+function detectMobileNumFreqs() {
+    var result = navigator.userAgent.match(/(iphone)|(ipod)|(ipad)|(android)|(blackberry)|(windows phone)|(symbian)/i);
+    if (result !== null) return "mobile";
+    else return "desktop";
+}
+function getMouseDownNumFreqs() {
+    if (detectMobileNumFreqs() == "desktop") return "mousedown";
+    else return "touchstart";
+}
+function getMouseUpNumFreqs() {
+    if (detectMobileNumFreqs() == "desktop") return "mouseup";
+    else return "touchend";
+}
+function getMouseMoveNumFreqs() {
+    if (detectMobileNumFreqs() == "desktop") return "mousemove";
+    else return "touchmove";
+}
+// UnisonWidth
+function mainUnisonWidth() {
+    volumeKnobUnisonWidth.addEventListener(getMouseDownUnisonWidth(), onMouseDownUnisonWidth); //listen for mouse button click
+    document.addEventListener(getMouseUpUnisonWidth(), onMouseUpUnisonWidth); //listen for mouse button unisonWidth
+    createTicksUnisonWidth(27, 0);
+}
+//on mouse button down
+function onMouseDownUnisonWidth() {
+    document.addEventListener(getMouseMoveUnisonWidth(), onMouseMoveUnisonWidth); //start drag
+}
+//on mouse button unisonWidth
+function onMouseUpUnisonWidth() {
+    document.removeEventListener(getMouseMoveUnisonWidth(), onMouseMoveUnisonWidth); //stop drag
+}
+//compute mouse angle relative to center of volume knob
+//For clarification, see my basic trig explanation at:
+//https://www.quora.com/What-is-the-significance-of-the-number-pi-to-the-universe/answer/Kevin-Lam-15
+function onMouseMoveUnisonWidth(event) {
+    knobPositionXUnisonWidth = boundingRectangleUnisonWidth.left; //get knob's global x position
+    knobPositionYUnisonWidth = boundingRectangleUnisonWidth.top; //get knob's global y position
+    if (detectMobileUnisonWidth() == "desktop") {
+        mouseXUnisonWidth = event.pageX; //get mouse's x global position
+        mouseYUnisonWidth = event.pageY; //get mouse's y global position
+    } else {
+        mouseXUnisonWidth = event.touches[0].pageX; //get finger's x global position
+        mouseYUnisonWidth = event.touches[0].pageY; //get finger's y global position
+    }
+    knobCenterXUnisonWidth = boundingRectangleUnisonWidth.width / 2 + knobPositionXUnisonWidth; //get global horizontal center position of knob relative to mouse position
+    knobCenterYUnisonWidth = boundingRectangleUnisonWidth.height / 2 + knobPositionYUnisonWidth; //get global vertical center position of knob relative to mouse position
+    adjacentSideUnisonWidth = knobCenterXUnisonWidth - mouseXUnisonWidth; //compute adjacent value of imaginary right angle triangle
+    oppositeSideUnisonWidth = knobCenterYUnisonWidth - mouseYUnisonWidth; //compute opposite value of imaginary right angle triangle
+    //arc-tangent function returns circular angle in radians
+    //use atan2() instead of atan() because atan() returns only 180 degree max (PI radians) but atan2() returns four quadrant's 360 degree max (2PI radians)
+    currentRadiansAngleUnisonWidth = Math.atan2(adjacentSideUnisonWidth, oppositeSideUnisonWidth);
+    getRadiansInDegreesUnisonWidth = currentRadiansAngleUnisonWidth * 180 / Math.PI; //convert radians into degrees
+    finalAngleInDegreesUnisonWidth = -(getRadiansInDegreesUnisonWidth - 135); //knob is already starting at -135 degrees due to visual design so 135 degrees needs to be subtracted to compensate for the angle offset, negative value represents clockwise direction
+    //only allow rotate if greater than zero degrees or lesser than 270 degrees
+    if (finalAngleInDegreesUnisonWidth >= 0 && finalAngleInDegreesUnisonWidth <= 270) {
+        volumeKnobUnisonWidth.style.transform = "rotate(" + finalAngleInDegreesUnisonWidth + "deg)"; //use dynamic CSS transform to rotate volume knob
+        //270 degrees maximum freedom of rotation / 100% volume = 1% of volume difference per 2.7 degrees of rotation
+        volumeSettingUnisonWidth = Math.round(finalAngleInDegreesUnisonWidth * (19 / 270) + 0.7);
+        tickHighlightPositionUnisonWidth = Math.round(volumeSettingUnisonWidth * 27 / 20); //interpolate how many ticks need to be highlighted
+        unisonWidth = volumeSettingUnisonWidth;
+        createTicksUnisonWidth(27, tickHighlightPositionUnisonWidth); //highlight ticks
+        document.getElementById("volumeValue-unisonWidth").innerHTML = volumeSettingUnisonWidth; //update volume text
+    }
+}
+//dynamically create volume knob "ticks"
+function createTicksUnisonWidth(numTicks, highlightNumTicks) {
+    //reset first by deleting all existing ticks
+    while(tickContainerUnisonWidth.firstChild)tickContainerUnisonWidth.removeChild(tickContainerUnisonWidth.firstChild);
+    //create ticks
+    for(var i = 0; i < numTicks; i++){
+        var tickUnisonWidth = document.createElement("div");
+        //highlight only the appropriate ticks using dynamic CSS
+        if (i < highlightNumTicks) tickUnisonWidth.className = "tick activetick";
+        else tickUnisonWidth.className = "tick";
+        tickContainerUnisonWidth.appendChild(tickUnisonWidth);
+        tickUnisonWidth.style.transform = "rotate(" + startingTickAngleUnisonWidth + "deg)";
+        startingTickAngleUnisonWidth += 10;
+    }
+    startingTickAngleUnisonWidth = -135; //reset
+}
+//detect for mobile devices from https://www.sitepoint.com/navigator-useragent-mobiles-including-ipad/
+function detectMobileUnisonWidth() {
+    var result = navigator.userAgent.match(/(iphone)|(ipod)|(ipad)|(android)|(blackberry)|(windows phone)|(symbian)/i);
+    if (result !== null) return "mobile";
+    else return "desktop";
+}
+function getMouseDownUnisonWidth() {
+    if (detectMobileUnisonWidth() == "desktop") return "mousedown";
+    else return "touchstart";
+}
+function getMouseUpUnisonWidth() {
+    if (detectMobileUnisonWidth() == "desktop") return "mouseup";
+    else return "touchend";
+}
+function getMouseMoveUnisonWidth() {
+    if (detectMobileUnisonWidth() == "desktop") return "mousemove";
+    else return "touchmove";
+}
+// BaseFreq
+function mainBaseFreq() {
+    volumeKnobBaseFreq.addEventListener(getMouseDownBaseFreq(), onMouseDownBaseFreq); //listen for mouse button click
+    document.addEventListener(getMouseUpBaseFreq(), onMouseUpBaseFreq); //listen for mouse button baseFreq
+    createTicksBaseFreq(27, 2);
+}
+//on mouse button down
+function onMouseDownBaseFreq() {
+    document.addEventListener(getMouseMoveBaseFreq(), onMouseMoveBaseFreq); //start drag
+}
+//on mouse button baseFreq
+function onMouseUpBaseFreq() {
+    document.removeEventListener(getMouseMoveBaseFreq(), onMouseMoveBaseFreq); //stop drag
+}
+//compute mouse angle relative to center of volume knob
+//For clarification, see my basic trig explanation at:
+//https://www.quora.com/What-is-the-significance-of-the-number-pi-to-the-universe/answer/Kevin-Lam-15
+function onMouseMoveBaseFreq(event) {
+    knobPositionXBaseFreq = boundingRectangleBaseFreq.left; //get knob's global x position
+    knobPositionYBaseFreq = boundingRectangleBaseFreq.top; //get knob's global y position
+    if (detectMobileBaseFreq() == "desktop") {
+        mouseXBaseFreq = event.pageX; //get mouse's x global position
+        mouseYBaseFreq = event.pageY; //get mouse's y global position
+    } else {
+        mouseXBaseFreq = event.touches[0].pageX; //get finger's x global position
+        mouseYBaseFreq = event.touches[0].pageY; //get finger's y global position
+    }
+    knobCenterXBaseFreq = boundingRectangleBaseFreq.width / 2 + knobPositionXBaseFreq; //get global horizontal center position of knob relative to mouse position
+    knobCenterYBaseFreq = boundingRectangleBaseFreq.height / 2 + knobPositionYBaseFreq; //get global vertical center position of knob relative to mouse position
+    adjacentSideBaseFreq = knobCenterXBaseFreq - mouseXBaseFreq; //compute adjacent value of imaginary right angle triangle
+    oppositeSideBaseFreq = knobCenterYBaseFreq - mouseYBaseFreq; //compute opposite value of imaginary right angle triangle
+    //arc-tangent function returns circular angle in radians
+    //use atan2() instead of atan() because atan() returns only 180 degree max (PI radians) but atan2() returns four quadrant's 360 degree max (2PI radians)
+    currentRadiansAngleBaseFreq = Math.atan2(adjacentSideBaseFreq, oppositeSideBaseFreq);
+    getRadiansInDegreesBaseFreq = currentRadiansAngleBaseFreq * 180 / Math.PI; //convert radians into degrees
+    finalAngleInDegreesBaseFreq = -(getRadiansInDegreesBaseFreq - 135); //knob is already starting at -135 degrees due to visual design so 135 degrees needs to be subtracted to compensate for the angle offset, negative value represents clockwise direction
+    //only allow rotate if greater than zero degrees or lesser than 270 degrees
+    if (finalAngleInDegreesBaseFreq >= 0 && finalAngleInDegreesBaseFreq <= 270) {
+        volumeKnobBaseFreq.style.transform = "rotate(" + finalAngleInDegreesBaseFreq + "deg)"; //use dynamic CSS transform to rotate volume knob
+        //270 degrees maximum freedom of rotation / 100% volume = 1% of volume difference per 2.7 degrees of rotation
+        volumeSettingBaseFreq = Math.round(finalAngleInDegreesBaseFreq * (4950 / 270) + 49.7);
+        tickHighlightPositionBaseFreq = Math.round((volumeSettingBaseFreq - 49.7) * 27 / 5000); //interpolate how many ticks need to be highlighted
+        baseFreq = volumeSettingBaseFreq;
+        createTicksBaseFreq(27, tickHighlightPositionBaseFreq); //highlight ticks
+        document.getElementById("volumeValue-baseFreq").innerHTML = volumeSettingBaseFreq + " Hz"; //update volume text
+    }
+}
+//dynamically create volume knob "ticks"
+function createTicksBaseFreq(numTicks, highlightNumTicks) {
+    //reset first by deleting all existing ticks
+    while(tickContainerBaseFreq.firstChild)tickContainerBaseFreq.removeChild(tickContainerBaseFreq.firstChild);
+    //create ticks
+    for(var i = 0; i < numTicks; i++){
+        var tickBaseFreq = document.createElement("div");
+        //highlight only the appropriate ticks using dynamic CSS
+        if (i < highlightNumTicks) tickBaseFreq.className = "tick activetick";
+        else tickBaseFreq.className = "tick";
+        tickContainerBaseFreq.appendChild(tickBaseFreq);
+        tickBaseFreq.style.transform = "rotate(" + startingTickAngleBaseFreq + "deg)";
+        startingTickAngleBaseFreq += 10;
+    }
+    startingTickAngleBaseFreq = -135; //reset
+}
+//detect for mobile devices from https://www.sitepoint.com/navigator-useragent-mobiles-including-ipad/
+function detectMobileBaseFreq() {
+    var result = navigator.userAgent.match(/(iphone)|(ipod)|(ipad)|(android)|(blackberry)|(windows phone)|(symbian)/i);
+    if (result !== null) return "mobile";
+    else return "desktop";
+}
+function getMouseDownBaseFreq() {
+    if (detectMobileBaseFreq() == "desktop") return "mousedown";
+    else return "touchstart";
+}
+function getMouseUpBaseFreq() {
+    if (detectMobileBaseFreq() == "desktop") return "mouseup";
+    else return "touchend";
+}
+function getMouseMoveBaseFreq() {
+    if (detectMobileBaseFreq() == "desktop") return "mousemove";
+    else return "touchmove";
+}
 // Slider Button
 //detect for mobile devices from https://www.sitepoint.com/navigator-useragent-mobiles-including-ipad/
 mainDuration2();
@@ -2177,6 +2749,10 @@ mainSustain();
 mainFrequency();
 mainFiltSlid();
 mainFiltGain();
+mainDistValue();
+mainNumFreqs();
+mainUnisonWidth();
+mainBaseFreq();
 
 },{"lodash":"1vR8I","simple-statistics":"7O0Hq","mathjs":"6SWGe","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"1vR8I":[function(require,module,exports) {
 var global = arguments[3];

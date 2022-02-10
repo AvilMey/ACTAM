@@ -84,6 +84,11 @@ body {
     margin-top: 61.25%;
 }
 
+#Piano:hover {
+  background-color: #4CAF50; /* Green */
+  color: white;
+}
+
 #Acoustic {
     position: absolute;
     border-radius: 12px;
@@ -235,9 +240,264 @@ body {
     z-index: 11;
   }
 
-  #FilterSelect  {
-      margin-top: 5%;
+  #Distortion {
+    position: absolute !important;
+    text-align: center !important;
+    background-color: red;
+    border-radius: 10px;
+    width: 40% !important;
+    height: 49% !important;
+    margin-left:28% !important;
+    margin-top: 44% !important;
   }
+
+  #HideDistortion {
+    position: absolute;
+    text-align: center !important;
+    background-color: red;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40% !important;
+    height: 49% !important;
+    margin-left:28% !important;
+    margin-top: 44% !important;
+    z-index: 11;
+}
+
+#Waveform {
+  position: absolute !important;
+  text-align: center !important;
+  background-color: red;
+  border-radius: 10px;
+  width: 26% !important;
+  height: 49% !important;
+  margin-left:70% !important;
+  margin-top: 44% !important;
+}
+
+#HideWaveform {
+  position: absolute;
+  text-align: center !important;
+  background-color: red;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26% !important;
+  height: 49% !important;
+  margin-left:70% !important;
+  margin-top: 44% !important;
+  z-index: 11;
+}
+
+#Sine {
+  position: absolute;
+  margin-left: -45%;
+  margin-top: 5%;
+  border-radius: 12px;
+  transition-duration: 0.4s;
+  width: 38%;
+  font-size: 110%;
+  height: 13%;
+}
+
+#Sine:hover {
+  background-color: #4CAF50; /* Green */
+  color: white;
+}
+
+#Square{
+  position: absolute;
+  margin-left: 5%;
+  margin-top: 5%;
+  border-radius: 12px;
+  transition-duration: 0.4s;
+  width: 38%;
+  font-size: 110%;
+  height: 13%;
+}
+
+#Square:hover {
+  background-color: #4CAF50; /* Green */
+  color: white;
+}
+
+#Sawtooth {
+  position: absolute;
+  margin-left: -45%;
+  margin-top: 25%;
+  border-radius: 12px;
+  transition-duration: 0.4s;
+  width: 38%;
+  font-size: 110%;
+  height: 13%;
+}
+
+#Sawtooth:hover {
+  background-color: #4CAF50; /* Green */
+  color: white;
+}
+
+#Triangle {
+  position: absolute;
+  margin-left: 5%;
+  margin-top: 25%;
+  border-radius: 12px;
+  transition-duration: 0.4s;
+  width: 38%;
+  font-size: 110%;
+  height: 13%;
+}
+
+#Triangle:hover {
+  background-color: #4CAF50; /* Green */
+  color: white;
+}
+
+#HarmonicsLabel {
+  position: absolute;
+  margin-left: 20%;
+  margin-top: -18.5%;
+}
+
+#Harmonic1 {
+  position: absolute;
+  margin-left: 22%;
+  margin-top: -10.5%;
+  width: 6%;
+}
+
+#Harmonic2 {
+  position: absolute;
+  margin-left: 31.5%;
+  margin-top: -10.5%;
+  width: 6%;
+}
+
+#Harmonic3 {
+  position: absolute;
+  margin-left: 41%;
+  margin-top: -10.5%;
+  width: 6%;
+}
+
+#Harmonic4 {
+  position: absolute;
+  margin-left: 26.25%;
+  margin-top: -4%;
+  width: 6%;
+}
+
+#Harmonic5 {
+  position: absolute;
+  margin-left: 36.25%;
+  margin-top: -4%;
+  width: 6%;
+}
+  #DistOver {
+    position: absolute;
+    margin-left: 70%;
+    margin-top: -6%;
+  }
+
+  /* The switch - the box around the slider */
+/* The switch - the box around the slider */
+.switchDistortion {
+  position: absolute !important;
+  display: inline-block !important;
+  border: none !important;
+  width: 60px !important;
+  height: 34px !important;
+  margin-top: 5%;
+  margin-left: 20%;
+  background-color: transparent !important;
+}
+
+.switchDistortion:hover {
+  background-color: transparent !important;
+}
+
+/* Hide default HTML checkbox */
+.switchDistortion input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.switchDetune {
+  position: absolute !important;
+  display: inline-block !important;
+  border: none !important;
+  width: 60px !important;
+  height: 34px !important;
+  margin-top: 15%;
+  margin-left:-39%;
+  background-color: transparent !important;
+}
+
+.switchDetune:hover {
+  background-color: transparent !important;
+}
+
+/* Hide default HTML checkbox */
+.switchDetune input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+#FilterSelect  {
+  margin-top: 5%;
+}
 
 #ScaleSelect {
 
@@ -247,7 +507,7 @@ input[type="file"] {
     display: none;
 }
 
-label {
+#Fileinput {
     position: absolute;
     margin-left: 20.5%;
     border-radius: 12px;
@@ -263,7 +523,7 @@ label {
     
 }
 
-label:hover {
+#Fileinput:hover {
     background-color: #4CAF50; /* Green */
     color: white;
   }
@@ -616,7 +876,7 @@ label:hover {
     -moz-transform: rotate(0deg);
     -o-transform: rotate(0deg);
     -ms-transform: rotate(0deg);
-    transform: rotate(0deg);
+    transform: rotate(107.521deg);
     z-index: 10;
   }
   .knob-threshold:before {
@@ -715,7 +975,7 @@ label:hover {
     -moz-transform: rotate(0deg);
     -o-transform: rotate(0deg);
     -ms-transform: rotate(0deg);
-    transform: rotate(0deg);
+    transform: rotate(15.1473deg);
     z-index: 10;
   }
   .knob-attack:before {
@@ -1026,7 +1286,7 @@ label:hover {
     -moz-transform: rotate(0deg);
     -o-transform: rotate(0deg);
     -ms-transform: rotate(0deg);
-    transform: rotate(0deg);
+    transform: rotate(41.2974deg);
     z-index: 10;
   }
   .knob-sustain:before {
@@ -1338,7 +1598,7 @@ label:hover {
     -moz-transform: rotate(0deg);
     -o-transform: rotate(0deg);
     -ms-transform: rotate(0deg);
-    transform: rotate(0deg);
+    transform: rotate(132.968deg);
     z-index: 10;
   }
   .knob-filtGain:before {
@@ -1413,4 +1673,421 @@ label:hover {
       margin-left: 50%;
   }
   
+  .knob-surround-distValue {
+    position: relative;
+    margin-left:  12.5%;
+    margin-top: 5%;
+    background-color: grey;
+    width: 2.5em;
+    height: 2.5em;
+    border-radius: 50%;
+    border: solid 0.25em #0e0e0e;
+    
+    background: #181818 !important;
+    background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #1d1d1d), color-stop(1, #131313));
+    background: -ms-linear-gradient(bottom, #1d1d1d, #131313);
+    background: -moz-linear-gradient(center bottom, #1d1d1d 0%, #131313 100%);
+    background: -o-linear-gradient(#131313, #1d1d1d);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#131313', endColorstr='#1d1d1d', GradientType=0);
+    -webkit-box-shadow: 0 0.2em 0.1em 0.05em rgba(255, 255, 255, 0.1) inset, 0 -0.2em 0.1em 0.05em rgba(0, 0, 0, 0.5) inset, 0 0.5em 0.65em 0 rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0 0.2em 0.1em 0.05em rgba(255, 255, 255, 0.1) inset, 0 -0.2em 0.1em 0.05em rgba(0, 0, 0, 0.5) inset, 0 0.5em 0.65em 0 rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0.2em 0.1em 0.05em rgba(255, 255, 255, 0.1) inset, 0 -0.2em 0.1em 0.05em rgba(0, 0, 0, 0.5) inset, 0 0.5em 0.65em 0 rgba(0, 0, 0, 0.3);
+  }
+  .knob-distValue {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    transform: rotate(0deg);
+    z-index: 10;
+  }
+  .knob-distValue:before {
+    content: "";
+    position: absolute;
+    bottom: 19%;
+    left: 19%;
+    width: 3%;
+    height: 3%;
+    background-color: #a8d8f8;
+    border-radius: 50%;
+    -webkit-box-shadow: 0 0 0.4em 0 #79c3f4;
+    -moz-box-shadow: 0 0 0.4em 0 #79c3f4;
+    box-shadow: 0 0 0.4em 0 #79c3f4;
+  }
+  .min-distValue,
+  .max-distValue {
+    display: block;
+    font-family: "Varela Round", sans-serif;
+    color: rgba(255, 255, 255, 0.4);
+    text-transform: uppercase;
+    -webkit-font-smoothing: antialiased;
+    font-size: 70%;
+    position: absolute;
+    opacity: 0.5;
+  }
+  .min-distValue {
+    display: none;
+    bottom: 1em;
+    left: -2.5em;
+  }
+  .max-distValue {
+    display: none;
+    bottom: 1em;
+    right: -2.5em;
+  }
+  .tick-distValue {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 5;
+    overflow: visible;
+  }
+  .tick-distValue:after {
+    content: "";
+    width: 0.08em;
+    height: 0.6em;
+    background-color: rgba(255, 255, 255, 0.2);
+    position: absolute;
+    top: -1.5em;
+    left: 50%;
+    -webkit-transition: all 180ms ease-out;
+    -moz-transition: all 180ms ease-out;
+    -o-transition: all 180ms ease-out;
+    transition: all 180ms ease-out;
+  }
+  .activetick:after {
+    background-color: #a8d8f8;
+    -webkit-box-shadow: 0 0 0.3em 0.08em #79c3f4;
+    -moz-box-shadow: 0 0 0.3em 0.08em #79c3f4;
+    box-shadow: 0 0 0.3em 0.08em #79c3f4;
+    -webkit-transition: all 50ms ease-in;
+    -moz-transition: all 50ms ease-in;
+    -o-transition: all 50ms ease-in;
+    transition: all 50ms ease-in;
+  }
+
+  #pDistValue {
+      margin-top: 8%;
+      margin-left: -35%;
+  }
+  
+  .knob-surround-numFreqs {
+    position: relative;
+    margin-left:  45%;
+    margin-top: 5%;
+    background-color: grey;
+    width: 2.5em;
+    height: 2.5em;
+    border-radius: 50%;
+    border: solid 0.25em #0e0e0e;
+    
+    background: #181818 !important;
+    background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #1d1d1d), color-stop(1, #131313));
+    background: -ms-linear-gradient(bottom, #1d1d1d, #131313);
+    background: -moz-linear-gradient(center bottom, #1d1d1d 0%, #131313 100%);
+    background: -o-linear-gradient(#131313, #1d1d1d);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#131313', endColorstr='#1d1d1d', GradientType=0);
+    -webkit-box-shadow: 0 0.2em 0.1em 0.05em rgba(255, 255, 255, 0.1) inset, 0 -0.2em 0.1em 0.05em rgba(0, 0, 0, 0.5) inset, 0 0.5em 0.65em 0 rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0 0.2em 0.1em 0.05em rgba(255, 255, 255, 0.1) inset, 0 -0.2em 0.1em 0.05em rgba(0, 0, 0, 0.5) inset, 0 0.5em 0.65em 0 rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0.2em 0.1em 0.05em rgba(255, 255, 255, 0.1) inset, 0 -0.2em 0.1em 0.05em rgba(0, 0, 0, 0.5) inset, 0 0.5em 0.65em 0 rgba(0, 0, 0, 0.3);
+  }
+  .knob-numFreqs {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    transform: rotate(122.127deg);
+    z-index: 10;
+  }
+  .knob-numFreqs:before {
+    content: "";
+    position: absolute;
+    bottom: 19%;
+    left: 19%;
+    width: 3%;
+    height: 3%;
+    background-color: #a8d8f8;
+    border-radius: 50%;
+    -webkit-box-shadow: 0 0 0.4em 0 #79c3f4;
+    -moz-box-shadow: 0 0 0.4em 0 #79c3f4;
+    box-shadow: 0 0 0.4em 0 #79c3f4;
+  }
+  .min-numFreqs,
+  .max-numFreqs {
+    display: block;
+    font-family: "Varela Round", sans-serif;
+    color: rgba(255, 255, 255, 0.4);
+    text-transform: uppercase;
+    -webkit-font-smoothing: antialiased;
+    font-size: 70%;
+    position: absolute;
+    opacity: 0.5;
+  }
+  .min-numFreqs {
+    display: none;
+    bottom: 1em;
+    left: -2.5em;
+  }
+  .max-numFreqs {
+    display: none;
+    bottom: 1em;
+    right: -2.5em;
+  }
+  .tick-numFreqs {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 5;
+    overflow: visible;
+  }
+  .tick-numFreqs:after {
+    content: "";
+    width: 0.08em;
+    height: 0.6em;
+    background-color: rgba(255, 255, 255, 0.2);
+    position: absolute;
+    top: -1.5em;
+    left: 50%;
+    -webkit-transition: all 180ms ease-out;
+    -moz-transition: all 180ms ease-out;
+    -o-transition: all 180ms ease-out;
+    transition: all 180ms ease-out;
+  }
+  .activetick:after {
+    background-color: #a8d8f8;
+    -webkit-box-shadow: 0 0 0.3em 0.08em #79c3f4;
+    -moz-box-shadow: 0 0 0.3em 0.08em #79c3f4;
+    box-shadow: 0 0 0.3em 0.08em #79c3f4;
+    -webkit-transition: all 50ms ease-in;
+    -moz-transition: all 50ms ease-in;
+    -o-transition: all 50ms ease-in;
+    transition: all 50ms ease-in;
+  }
+
+  #pNumFreqs {
+      margin-top: -18.5%;
+      margin-left: 5%;
+  }
+
+  .knob-surround-unisonWidth {
+    position: relative;
+    margin-left:  45%;
+    margin-top: 4%;
+    background-color: grey;
+    width: 2.5em;
+    height: 2.5em;
+    border-radius: 50%;
+    border: solid 0.25em #0e0e0e;
+    
+    background: #181818 !important;
+    background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #1d1d1d), color-stop(1, #131313));
+    background: -ms-linear-gradient(bottom, #1d1d1d, #131313);
+    background: -moz-linear-gradient(center bottom, #1d1d1d 0%, #131313 100%);
+    background: -o-linear-gradient(#131313, #1d1d1d);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#131313', endColorstr='#1d1d1d', GradientType=0);
+    -webkit-box-shadow: 0 0.2em 0.1em 0.05em rgba(255, 255, 255, 0.1) inset, 0 -0.2em 0.1em 0.05em rgba(0, 0, 0, 0.5) inset, 0 0.5em 0.65em 0 rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0 0.2em 0.1em 0.05em rgba(255, 255, 255, 0.1) inset, 0 -0.2em 0.1em 0.05em rgba(0, 0, 0, 0.5) inset, 0 0.5em 0.65em 0 rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0.2em 0.1em 0.05em rgba(255, 255, 255, 0.1) inset, 0 -0.2em 0.1em 0.05em rgba(0, 0, 0, 0.5) inset, 0 0.5em 0.65em 0 rgba(0, 0, 0, 0.3);
+  }
+  .knob-unisonWidth {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    transform: rotate(0deg);
+    z-index: 10;
+  }
+  .knob-unisonWidth:before {
+    content: "";
+    position: absolute;
+    bottom: 19%;
+    left: 19%;
+    width: 3%;
+    height: 3%;
+    background-color: #a8d8f8;
+    border-radius: 50%;
+    -webkit-box-shadow: 0 0 0.4em 0 #79c3f4;
+    -moz-box-shadow: 0 0 0.4em 0 #79c3f4;
+    box-shadow: 0 0 0.4em 0 #79c3f4;
+  }
+  .min-unisonWidth,
+  .max-unisonWidth {
+    display: block;
+    font-family: "Varela Round", sans-serif;
+    color: rgba(255, 255, 255, 0.4);
+    text-transform: uppercase;
+    -webkit-font-smoothing: antialiased;
+    font-size: 70%;
+    position: absolute;
+    opacity: 0.5;
+  }
+  .min-unisonWidth {
+    display: none;
+    bottom: 1em;
+    left: -2.5em;
+  }
+  .max-unisonWidth {
+    display: none;
+    bottom: 1em;
+    right: -2.5em;
+  }
+  .tick-unisonWidth {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 5;
+    overflow: visible;
+  }
+  .tick-unisonWidth:after {
+    content: "";
+    width: 0.08em;
+    height: 0.6em;
+    background-color: rgba(255, 255, 255, 0.2);
+    position: absolute;
+    top: -1.5em;
+    left: 50%;
+    -webkit-transition: all 180ms ease-out;
+    -moz-transition: all 180ms ease-out;
+    -o-transition: all 180ms ease-out;
+    transition: all 180ms ease-out;
+  }
+  .activetick:after {
+    background-color: #a8d8f8;
+    -webkit-box-shadow: 0 0 0.3em 0.08em #79c3f4;
+    -moz-box-shadow: 0 0 0.3em 0.08em #79c3f4;
+    box-shadow: 0 0 0.3em 0.08em #79c3f4;
+    -webkit-transition: all 50ms ease-in;
+    -moz-transition: all 50ms ease-in;
+    -o-transition: all 50ms ease-in;
+    transition: all 50ms ease-in;
+  }
+
+  #pUnisonWidth {
+      margin-top: 7%;
+      margin-left: 0%;
+  }
+  
+  .knob-surround-baseFreq {
+    position: relative;
+    margin-left:  45%;
+    margin-top: 5%;
+    background-color: grey;
+    width: 2.5em;
+    height: 2.5em;
+    border-radius: 50%;
+    border: solid 0.25em #0e0e0e;
+    
+    background: #181818 !important;
+    background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #1d1d1d), color-stop(1, #131313));
+    background: -ms-linear-gradient(bottom, #1d1d1d, #131313);
+    background: -moz-linear-gradient(center bottom, #1d1d1d 0%, #131313 100%);
+    background: -o-linear-gradient(#131313, #1d1d1d);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#131313', endColorstr='#1d1d1d', GradientType=0);
+    -webkit-box-shadow: 0 0.2em 0.1em 0.05em rgba(255, 255, 255, 0.1) inset, 0 -0.2em 0.1em 0.05em rgba(0, 0, 0, 0.5) inset, 0 0.5em 0.65em 0 rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0 0.2em 0.1em 0.05em rgba(255, 255, 255, 0.1) inset, 0 -0.2em 0.1em 0.05em rgba(0, 0, 0, 0.5) inset, 0 0.5em 0.65em 0 rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0.2em 0.1em 0.05em rgba(255, 255, 255, 0.1) inset, 0 -0.2em 0.1em 0.05em rgba(0, 0, 0, 0.5) inset, 0 0.5em 0.65em 0 rgba(0, 0, 0, 0.3);
+  }
+  .knob-baseFreq {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    transform: rotate(21.2156deg);
+    z-index: 10;
+  }
+  .knob-baseFreq:before {
+    content: "";
+    position: absolute;
+    bottom: 19%;
+    left: 19%;
+    width: 3%;
+    height: 3%;
+    background-color: #a8d8f8;
+    border-radius: 50%;
+    -webkit-box-shadow: 0 0 0.4em 0 #79c3f4;
+    -moz-box-shadow: 0 0 0.4em 0 #79c3f4;
+    box-shadow: 0 0 0.4em 0 #79c3f4;
+  }
+  .min-baseFreq,
+  .max-baseFreq {
+    display: block;
+    font-family: "Varela Round", sans-serif;
+    color: rgba(255, 255, 255, 0.4);
+    text-transform: uppercase;
+    -webkit-font-smoothing: antialiased;
+    font-size: 70%;
+    position: absolute;
+    opacity: 0.5;
+  }
+  .min-baseFreq {
+    display: none;
+    bottom: 1em;
+    left: -2.5em;
+  }
+  .max-baseFreq {
+    display: none;
+    bottom: 1em;
+    right: -2.5em;
+  }
+  .tick-baseFreq {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 5;
+    overflow: visible;
+  }
+  .tick-baseFreq:after {
+    content: "";
+    width: 0.08em;
+    height: 0.6em;
+    background-color: rgba(255, 255, 255, 0.2);
+    position: absolute;
+    top: -1.5em;
+    left: 50%;
+    -webkit-transition: all 180ms ease-out;
+    -moz-transition: all 180ms ease-out;
+    -o-transition: all 180ms ease-out;
+    transition: all 180ms ease-out;
+  }
+  .activetick:after {
+    background-color: #a8d8f8;
+    -webkit-box-shadow: 0 0 0.3em 0.08em #79c3f4;
+    -moz-box-shadow: 0 0 0.3em 0.08em #79c3f4;
+    box-shadow: 0 0 0.3em 0.08em #79c3f4;
+    -webkit-transition: all 50ms ease-in;
+    -moz-transition: all 50ms ease-in;
+    -o-transition: all 50ms ease-in;
+    transition: all 50ms ease-in;
+  }
+
+  #pBaseFreq {
+      margin-top: 45%;
+      margin-left: 5%;
+  }
+  
+
 /*# sourceMappingURL=index.1e4ce84f.css.map */
