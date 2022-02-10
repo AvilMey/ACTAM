@@ -30,6 +30,7 @@
             <button id="Manual">Manual</button>
         </div>
 
+        <div id="HideDuration2">Not Manual Mode</div>
         <div id="Parameters"> Parameters
             <div id="Duration2">
                 <p>Duration: <span id="volumeValue-duration2" class="current-value-duration2">1 second</span></p>
@@ -74,7 +75,7 @@
             </div>
 
         </div>
-
+        <div id="HideScales">Not Manual Mode</div>
         <div id="Scales"> Scale: 
                 <select name="ScaleSelect" id="ScaleSelect">
                     <option value="Chromatic">Chromatic</option>
@@ -95,6 +96,7 @@
             </div>
         </div>
 
+        <div id="HideManualParameters1">Only in Manual Mode</div>
         <div id="ManualParameters1"> Manual Parameters1
 
             <div id="Attack">
@@ -154,6 +156,64 @@
             </div>
 
 
+        </div>
+
+        <div id="HideFilter">Only in Manual Mode</div>
+        <div id="Filter">Filter
+
+            <div id="FilterType"> Filter Type: 
+                <select name="FilterTypeSelect" id="FilterSelect">
+                    <option value="lowpass">Lowpass</option>
+                    <option value="highpass">Highpass</option>
+                    <option value="bandpass">Bandpass</option>
+                    <option value="lowshelf">Lowshelf</option>
+                    <option value="highshelf">Highshelf</option>
+                    <option value="peaking">Peaking</option>
+                    <option value="notch">Notch</option>
+                    <option value="allpass">Allpass</option>
+            </div>
+
+            <div id="Frequency">
+                <p id="pFrequency">Frequency: <span id="volumeValue-frequency" class="current-value-frequency">1 Hz</span></p>
+                <div class="knob-surround-frequency">
+
+                    <div id="knob-frequency" class="knob-frequency"></div>
+              
+                    <span class="min-frequency">Min</span>
+                    <span class="max-frequency">Max</span>
+              
+                    <div id="tickContainer-frequency" class="ticks-frequency"></div>
+              
+                  </div>
+            </div>
+
+            <div id="FiltSlid">
+                <p id="pFiltSlid">FiltQSlider: <span id="volumeValue-filtSlid" class="current-value-filtSlid">1</span></p>
+                <div class="knob-surround-filtSlid">
+
+                    <div id="knob-filtSlid" class="knob-filtSlid"></div>
+              
+                    <span class="min-filtSlid">Min</span>
+                    <span class="max-filtSlid">Max</span>
+              
+                    <div id="tickContainer-filtSlid" class="ticks-filtSlid"></div>
+              
+                  </div>
+            </div>
+
+            <div id="FiltGain">
+                <p id="pFiltGain">Filter Gain: <span id="volumeValue-filtGain" class="current-value-filtGain">-40 dB</span></p>
+                <div class="knob-surround-filtGain">
+
+                    <div id="knob-filtGain" class="knob-filtGain"></div>
+              
+                    <span class="min-filtGain">Min</span>
+                    <span class="max-filtGain">Max</span>
+              
+                    <div id="tickContainer-filtGain" class="ticks-filtGain"></div>
+              
+                  </div>
+            </div>
         </div>
 
     </body>

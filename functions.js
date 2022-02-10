@@ -28,9 +28,9 @@ var threshold = 0.4; //Value from 0 to 1, it is a threshold to decide if a pixel
 
 //Filter
 var filterTyp = "lowshelf"; // can be: lowpass, highpass, bandpass, lowshelf, highshelf, peaking, notch, allpass
-var filtFreq = 500; // filter freq reference
-var filtQslider = 4; // Some other parameter for the filter that I don't remember, have to be positive
-var filtGain = 2; // Other parameter of the filter. can be either negative or positve
+var filtFreq = 1; // filter freq reference
+var filtQslider = 1; // Some other parameter for the filter that I don't remember, have to be positive
+var filtGain = -40; // Other parameter of the filter. can be either negative or positve
 
 //Distortion
 var ApplyDist = true; // true or false
@@ -223,6 +223,66 @@ var startingTickAngleSustain = -135;
 var tickContainerSustain = document.getElementById("tickContainer-sustain");
 var volumeKnobSustain = document.getElementById("knob-sustain");
 var boundingRectangleSustain = volumeKnobSustain.getBoundingClientRect(); //get rectangular geometric data of knob (x, y, width, height)
+
+// Frequency
+
+var knobPositionXFrequency;
+var knobPositionYFrequency;
+var mouseXFrequency;
+var mouseYFrequency;
+var knobCenterXFrequency;
+var knobCenterYFrequency;
+var adjacentSideFrequency;
+var oppositeSideFrequency;
+var currentRadiansAngleFrequency;
+var getRadiansInDegreesFrequency;
+var finalAngleInDegreesFrequency;
+var volumeSettingFrequency;
+var tickHighlightPositionFrequency;
+var startingTickAngleFrequency = -135;
+var tickContainerFrequency = document.getElementById("tickContainer-frequency");
+var volumeKnobFrequency = document.getElementById("knob-frequency");
+var boundingRectangleFrequency = volumeKnobFrequency.getBoundingClientRect(); //get rectangular geometric data of knob (x, y, width, height)
+
+// FiltSlid
+
+var knobPositionXFiltSlid;
+var knobPositionYFiltSlid;
+var mouseXFiltSlid;
+var mouseYFiltSlid;
+var knobCenterXFiltSlid;
+var knobCenterYFiltSlid;
+var adjacentSideFiltSlid;
+var oppositeSideFiltSlid;
+var currentRadiansAngleFiltSlid;
+var getRadiansInDegreesFiltSlid;
+var finalAngleInDegreesFiltSlid;
+var volumeSettingFiltSlid;
+var tickHighlightPositionFiltSlid;
+var startingTickAngleFiltSlid = -135;
+var tickContainerFiltSlid = document.getElementById("tickContainer-filtSlid");
+var volumeKnobFiltSlid = document.getElementById("knob-filtSlid");
+var boundingRectangleFiltSlid = volumeKnobFiltSlid.getBoundingClientRect(); //get rectangular geometric data of knob (x, y, width, height)
+
+// FiltGain
+
+var knobPositionXFiltGain;
+var knobPositionYFiltGain;
+var mouseXFiltGain;
+var mouseYFiltGain;
+var knobCenterXFiltGain;
+var knobCenterYFiltGain;
+var adjacentSideFiltGain;
+var oppositeSideFiltGain;
+var currentRadiansAngleFiltGain;
+var getRadiansInDegreesFiltGain;
+var finalAngleInDegreesFiltGain;
+var volumeSettingFiltGain;
+var tickHighlightPositionFiltGain;
+var startingTickAngleFiltGain = -135;
+var tickContainerFiltGain = document.getElementById("tickContainer-filtGain");
+var volumeKnobFiltGain = document.getElementById("knob-filtGain");
+var boundingRectangleFiltGain = volumeKnobFiltGain.getBoundingClientRect(); //get rectangular geometric data of knob (x, y, width, height)
 //
 
 
@@ -260,6 +320,13 @@ function playButton(){
         ScaleType = value;
         console.log(value);
 
+        // Filter Select
+
+        var f = document.getElementById("FilterSelect");
+        var filterValue = f.options[f.selectedIndex].value;
+        filterTyp = filterValue;
+        console.log(filterTyp);
+     
         if(SoundType == "piano" || SoundType == "acoustic" || SoundType == "organ" || SoundType == "edm" || SoundType == "manual"){
             if(SoundType != "manual"){NumFreqs = Scales[ScaleType].length;}
         playImage(normalizeImage(horizontalDerivative(medianFilter(data2Play)),NumFreqs,NumTimes));}
@@ -273,6 +340,18 @@ function playButton(){
 function pianoButton(){
     //document.getElementById('hihi').addEventListener('click',function () { playImage(reduceImage(data2Play)); });
     document.getElementById('Piano').addEventListener('click',function () {
+        $(document).ready(function() {
+            $('#HideManualParameters1').delay(1).fadeIn(100); 
+          });
+          $(document).ready(function() {
+            $('#HideFilter').delay(1).fadeIn(100); 
+          });
+          $(document).ready(function() {
+            $('#HideDuration2').delay(1).fadeOut(100); 
+          });
+          $(document).ready(function() {
+            $('#HideScales').delay(1).fadeOut(100); 
+          });
         SoundType = "piano";
     } 
     );
@@ -281,6 +360,18 @@ function pianoButton(){
 function acousticButton(){
     //document.getElementById('hihi').addEventListener('click',function () { playImage(reduceImage(data2Play)); });
     document.getElementById('Acoustic').addEventListener('click',function () {
+        $(document).ready(function() {
+            $('#HideManualParameters1').delay(1).fadeIn(100); 
+          });
+          $(document).ready(function() {
+            $('#HideFilter').delay(1).fadeIn(100); 
+          });
+          $(document).ready(function() {
+            $('#HideDuration2').delay(1).fadeOut(100); 
+          });
+          $(document).ready(function() {
+            $('#HideScales').delay(1).fadeOut(100); 
+          });
         SoundType = "acoustic";
     } 
     );
@@ -289,6 +380,18 @@ function acousticButton(){
 function edmButton(){
     //document.getElementById('hihi').addEventListener('click',function () { playImage(reduceImage(data2Play)); });
     document.getElementById('Edm').addEventListener('click',function () {
+        $(document).ready(function() {
+            $('#HideManualParameters1').delay(1).fadeIn(100); 
+          });
+          $(document).ready(function() {
+            $('#HideFilter').delay(1).fadeIn(100); 
+          });
+          $(document).ready(function() {
+            $('#HideDuration2').delay(1).fadeOut(100); 
+          });
+          $(document).ready(function() {
+            $('#HideScales').delay(1).fadeOut(100); 
+          });
         SoundType = "edm";
     } 
     );
@@ -297,6 +400,18 @@ function edmButton(){
 function organButton(){
     //document.getElementById('hihi').addEventListener('click',function () { playImage(reduceImage(data2Play)); });
     document.getElementById('Organ').addEventListener('click',function () {
+        $(document).ready(function() {
+            $('#HideManualParameters1').delay(1).fadeIn(100); 
+          });
+          $(document).ready(function() {
+            $('#HideFilter').delay(1).fadeIn(100); 
+          });
+          $(document).ready(function() {
+            $('#HideDuration2').delay(1).fadeOut(100); 
+          });
+          $(document).ready(function() {
+            $('#HideScales').delay(1).fadeOut(100); 
+          });
         SoundType = "organ";
     } 
     );
@@ -305,6 +420,20 @@ function organButton(){
 function manualButton(){
     //document.getElementById('hihi').addEventListener('click',function () { playImage(reduceImage(data2Play)); });
     document.getElementById('Manual').addEventListener('click',function () {
+        $(document).ready(function() {
+            $('#HideManualParameters1').delay(1).fadeOut(100); 
+          });
+        $(document).ready(function() {
+            $('#HideFilter').delay(1).fadeOut(100); 
+        });
+          $(document).ready(function() {
+            $('#HideDuration2').delay(1).fadeIn(100); 
+          });
+          $(document).ready(function() {
+            $('#HideScales').delay(1).fadeIn(100); 
+          });
+          document.getElementById("HideScales").style.display = "flex";
+          document.getElementById("HideDuration2").style.display = "flex";
         SoundType = "manual";
     } 
     );
@@ -409,6 +538,7 @@ function createOscillators(f, amplitud, detune){
     var distortion = c.createWaveShaper();
 
     //Filter
+    
     filter.type = filterTyp;
     filter.frequency.value = filtFreq;
     filter.Q.value = filtQslider;
@@ -1661,6 +1791,572 @@ function makeDistortionCurve(amount) {
         }
     }
 
+        // Frequency Button
+
+        function mainFrequency()
+        {
+            volumeKnobFrequency.addEventListener(getMouseDownFrequency(), onMouseDownFrequency); //listen for mouse button click
+            document.addEventListener(getMouseUpFrequency(), onMouseUpFrequency); //listen for mouse button frequency
+      
+            createTicksFrequency(27, 0);
+        }
+      
+        //on mouse button down
+        function onMouseDownFrequency()
+        {
+            document.addEventListener(getMouseMoveFrequency(), onMouseMoveFrequency); //start drag
+        }
+      
+        //on mouse button frequency
+        function onMouseUpFrequency()
+        {
+            document.removeEventListener(getMouseMoveFrequency(), onMouseMoveFrequency); //stop drag
+        }
+      
+        //compute mouse angle relative to center of volume knob
+        //For clarification, see my basic trig explanation at:
+        //https://www.quora.com/What-is-the-significance-of-the-number-pi-to-the-universe/answer/Kevin-Lam-15
+        function onMouseMoveFrequency(event)
+        {
+            knobPositionXFrequency = boundingRectangleFrequency.left; //get knob's global x position
+            knobPositionYFrequency = boundingRectangleFrequency.top; //get knob's global y position
+      
+            if(detectMobileFrequency() == "desktop")
+            {
+                mouseXFrequency = event.pageX; //get mouse's x global position
+                mouseYFrequency = event.pageY; //get mouse's y global position
+            } else {
+                mouseXFrequency = event.touches[0].pageX; //get finger's x global position
+                mouseYFrequency = event.touches[0].pageY; //get finger's y global position
+            }
+      
+            knobCenterXFrequency = boundingRectangleFrequency.width / 2 + knobPositionXFrequency; //get global horizontal center position of knob relative to mouse position
+            knobCenterYFrequency = boundingRectangleFrequency.height / 2 + knobPositionYFrequency; //get global vertical center position of knob relative to mouse position
+      
+            adjacentSideFrequency = knobCenterXFrequency - mouseXFrequency; //compute adjacent value of imaginary right angle triangle
+            oppositeSideFrequency = knobCenterYFrequency - mouseYFrequency; //compute opposite value of imaginary right angle triangle
+      
+            //arc-tangent function returns circular angle in radians
+            //use atan2() instead of atan() because atan() returns only 180 degree max (PI radians) but atan2() returns four quadrant's 360 degree max (2PI radians)
+            currentRadiansAngleFrequency = Math.atan2(adjacentSideFrequency, oppositeSideFrequency);
+      
+            getRadiansInDegreesFrequency = currentRadiansAngleFrequency * 180 / Math.PI; //convert radians into degrees
+      
+            finalAngleInDegreesFrequency = -(getRadiansInDegreesFrequency - 135); //knob is already starting at -135 degrees due to visual design so 135 degrees needs to be subtracted to compensate for the angle offset, negative value represents clockwise direction
+      
+            //only allow rotate if greater than zero degrees or lesser than 270 degrees
+            if(finalAngleInDegreesFrequency >= 0 && finalAngleInDegreesFrequency <= 270)
+            {
+                volumeKnobFrequency.style.transform = "rotate(" + finalAngleInDegreesFrequency + "deg)"; //use dynamic CSS transform to rotate volume knob
+      
+                //270 degrees maximum freedom of rotation / 100% volume = 1% of volume difference per 2.7 degrees of rotation
+                volumeSettingFrequency = Math.round(finalAngleInDegreesFrequency * (99999 / 270) + 0.7);
+      
+                tickHighlightPositionFrequency = Math.round((volumeSettingFrequency * 27/100000)); //interpolate how many ticks need to be highlighted
+                filtFreq = volumeSettingFrequency;
+                createTicksFrequency(27, tickHighlightPositionFrequency); //highlight ticks
+      
+                document.getElementById("volumeValue-frequency").innerHTML = volumeSettingFrequency + " Hz"; //update volume text
+            }
+        }
+      
+        //dynamically create volume knob "ticks"
+        function createTicksFrequency(numTicks, highlightNumTicks)
+        {
+            //reset first by deleting all existing ticks
+            while(tickContainerFrequency.firstChild)
+            {
+                tickContainerFrequency.removeChild(tickContainerFrequency.firstChild);
+            }
+      
+            //create ticks
+            for(var i=0;i<numTicks;i++)
+            {
+                var tickFrequency = document.createElement("div");
+      
+                //highlight only the appropriate ticks using dynamic CSS
+                if(i < highlightNumTicks)
+                {
+                    tickFrequency.className = "tick activetick";
+                } else {
+                    tickFrequency.className = "tick";
+                }
+      
+                tickContainerFrequency.appendChild(tickFrequency);
+                tickFrequency.style.transform = "rotate(" + startingTickAngleFrequency + "deg)";
+                startingTickAngleFrequency += 10;
+            }
+      
+            startingTickAngleFrequency = -135; //reset
+        }
+      
+        //detect for mobile devices from https://www.sitepoint.com/navigator-useragent-mobiles-including-ipad/
+        function detectMobileFrequency()
+        {
+            var result = (navigator.userAgent.match(/(iphone)|(ipod)|(ipad)|(android)|(blackberry)|(windows phone)|(symbian)/i));
+      
+            if(result !== null)
+            {
+                return "mobile";
+            } else {
+                return "desktop";
+            }
+        }
+      
+        function getMouseDownFrequency()
+        {
+            if(detectMobileFrequency() == "desktop")
+            {
+                return "mousedown";
+            } else {
+                return "touchstart";
+            }
+        }
+      
+        function getMouseUpFrequency()
+        {
+            if(detectMobileFrequency() == "desktop")
+            {
+                return "mouseup";
+            } else {
+                return "touchend";
+            }
+        }
+      
+        function getMouseMoveFrequency()
+        {
+            if(detectMobileFrequency() == "desktop")
+            {
+                return "mousemove";
+            } else {
+                return "touchmove";
+            }
+        }
+
+                // FiltSlid Button
+
+        function mainFiltSlid()
+        {
+            volumeKnobFiltSlid.addEventListener(getMouseDownFiltSlid(), onMouseDownFiltSlid); //listen for mouse button click
+            document.addEventListener(getMouseUpFiltSlid(), onMouseUpFiltSlid); //listen for mouse button filtSlid
+      
+            createTicksFiltSlid(27, 0);
+        }
+      
+        //on mouse button down
+        function onMouseDownFiltSlid()
+        {
+            document.addEventListener(getMouseMoveFiltSlid(), onMouseMoveFiltSlid); //start drag
+        }
+      
+        //on mouse button filtSlid
+        function onMouseUpFiltSlid()
+        {
+            document.removeEventListener(getMouseMoveFiltSlid(), onMouseMoveFiltSlid); //stop drag
+        }
+      
+        //compute mouse angle relative to center of volume knob
+        //For clarification, see my basic trig explanation at:
+        //https://www.quora.com/What-is-the-significance-of-the-number-pi-to-the-universe/answer/Kevin-Lam-15
+        function onMouseMoveFiltSlid(event)
+        {
+            knobPositionXFiltSlid = boundingRectangleFiltSlid.left; //get knob's global x position
+            knobPositionYFiltSlid = boundingRectangleFiltSlid.top; //get knob's global y position
+      
+            if(detectMobileFiltSlid() == "desktop")
+            {
+                mouseXFiltSlid = event.pageX; //get mouse's x global position
+                mouseYFiltSlid = event.pageY; //get mouse's y global position
+            } else {
+                mouseXFiltSlid = event.touches[0].pageX; //get finger's x global position
+                mouseYFiltSlid = event.touches[0].pageY; //get finger's y global position
+            }
+      
+            knobCenterXFiltSlid = boundingRectangleFiltSlid.width / 2 + knobPositionXFiltSlid; //get global horizontal center position of knob relative to mouse position
+            knobCenterYFiltSlid = boundingRectangleFiltSlid.height / 2 + knobPositionYFiltSlid; //get global vertical center position of knob relative to mouse position
+      
+            adjacentSideFiltSlid = knobCenterXFiltSlid - mouseXFiltSlid; //compute adjacent value of imaginary right angle triangle
+            oppositeSideFiltSlid = knobCenterYFiltSlid - mouseYFiltSlid; //compute opposite value of imaginary right angle triangle
+      
+            //arc-tangent function returns circular angle in radians
+            //use atan2() instead of atan() because atan() returns only 180 degree max (PI radians) but atan2() returns four quadrant's 360 degree max (2PI radians)
+            currentRadiansAngleFiltSlid = Math.atan2(adjacentSideFiltSlid, oppositeSideFiltSlid);
+      
+            getRadiansInDegreesFiltSlid = currentRadiansAngleFiltSlid * 180 / Math.PI; //convert radians into degrees
+      
+            finalAngleInDegreesFiltSlid = -(getRadiansInDegreesFiltSlid - 135); //knob is already starting at -135 degrees due to visual design so 135 degrees needs to be subtracted to compensate for the angle offset, negative value represents clockwise direction
+      
+            //only allow rotate if greater than zero degrees or lesser than 270 degrees
+            if(finalAngleInDegreesFiltSlid >= 0 && finalAngleInDegreesFiltSlid <= 270)
+            {
+                volumeKnobFiltSlid.style.transform = "rotate(" + finalAngleInDegreesFiltSlid + "deg)"; //use dynamic CSS transform to rotate volume knob
+      
+                //270 degrees maximum freedom of rotation / 100% volume = 1% of volume difference per 2.7 degrees of rotation
+                volumeSettingFiltSlid = Math.round(finalAngleInDegreesFiltSlid * (99999 / 270) + 0.7);
+      
+                tickHighlightPositionFiltSlid = Math.round((volumeSettingFiltSlid * 27/100000)); //interpolate how many ticks need to be highlighted
+                filtFreq = volumeSettingFiltSlid;
+                createTicksFiltSlid(27, tickHighlightPositionFiltSlid); //highlight ticks
+      
+                document.getElementById("volumeValue-filtSlid").innerHTML = volumeSettingFiltSlid + " Hz"; //update volume text
+            }
+        }
+      
+        //dynamically create volume knob "ticks"
+        function createTicksFiltSlid(numTicks, highlightNumTicks)
+        {
+            //reset first by deleting all existing ticks
+            while(tickContainerFiltSlid.firstChild)
+            {
+                tickContainerFiltSlid.removeChild(tickContainerFiltSlid.firstChild);
+            }
+      
+            //create ticks
+            for(var i=0;i<numTicks;i++)
+            {
+                var tickFiltSlid = document.createElement("div");
+      
+                //highlight only the appropriate ticks using dynamic CSS
+                if(i < highlightNumTicks)
+                {
+                    tickFiltSlid.className = "tick activetick";
+                } else {
+                    tickFiltSlid.className = "tick";
+                }
+      
+                tickContainerFiltSlid.appendChild(tickFiltSlid);
+                tickFiltSlid.style.transform = "rotate(" + startingTickAngleFiltSlid + "deg)";
+                startingTickAngleFiltSlid += 10;
+            }
+      
+            startingTickAngleFiltSlid = -135; //reset
+        }
+      
+        //detect for mobile devices from https://www.sitepoint.com/navigator-useragent-mobiles-including-ipad/
+        function detectMobileFiltSlid()
+        {
+            var result = (navigator.userAgent.match(/(iphone)|(ipod)|(ipad)|(android)|(blackberry)|(windows phone)|(symbian)/i));
+      
+            if(result !== null)
+            {
+                return "mobile";
+            } else {
+                return "desktop";
+            }
+        }
+      
+        function getMouseDownFiltSlid()
+        {
+            if(detectMobileFiltSlid() == "desktop")
+            {
+                return "mousedown";
+            } else {
+                return "touchstart";
+            }
+        }
+      
+        function getMouseUpFiltSlid()
+        {
+            if(detectMobileFiltSlid() == "desktop")
+            {
+                return "mouseup";
+            } else {
+                return "touchend";
+            }
+        }
+      
+        function getMouseMoveFiltSlid()
+        {
+            if(detectMobileFiltSlid() == "desktop")
+            {
+                return "mousemove";
+            } else {
+                return "touchmove";
+            }
+        }
+        // FiltSlid Button
+
+        function mainFiltSlid()
+        {
+            volumeKnobFiltSlid.addEventListener(getMouseDownFiltSlid(), onMouseDownFiltSlid); //listen for mouse button click
+            document.addEventListener(getMouseUpFiltSlid(), onMouseUpFiltSlid); //listen for mouse button filtSlid
+      
+            createTicksFiltSlid(27, 0);
+        }
+      
+        //on mouse button down
+        function onMouseDownFiltSlid()
+        {
+            document.addEventListener(getMouseMoveFiltSlid(), onMouseMoveFiltSlid); //start drag
+        }
+      
+        //on mouse button filtSlid
+        function onMouseUpFiltSlid()
+        {
+            document.removeEventListener(getMouseMoveFiltSlid(), onMouseMoveFiltSlid); //stop drag
+        }
+      
+        //compute mouse angle relative to center of volume knob
+        //For clarification, see my basic trig explanation at:
+        //https://www.quora.com/What-is-the-significance-of-the-number-pi-to-the-universe/answer/Kevin-Lam-15
+        function onMouseMoveFiltSlid(event)
+        {
+            knobPositionXFiltSlid = boundingRectangleFiltSlid.left; //get knob's global x position
+            knobPositionYFiltSlid = boundingRectangleFiltSlid.top; //get knob's global y position
+      
+            if(detectMobileFiltSlid() == "desktop")
+            {
+                mouseXFiltSlid = event.pageX; //get mouse's x global position
+                mouseYFiltSlid = event.pageY; //get mouse's y global position
+            } else {
+                mouseXFiltSlid = event.touches[0].pageX; //get finger's x global position
+                mouseYFiltSlid = event.touches[0].pageY; //get finger's y global position
+            }
+      
+            knobCenterXFiltSlid = boundingRectangleFiltSlid.width / 2 + knobPositionXFiltSlid; //get global horizontal center position of knob relative to mouse position
+            knobCenterYFiltSlid = boundingRectangleFiltSlid.height / 2 + knobPositionYFiltSlid; //get global vertical center position of knob relative to mouse position
+      
+            adjacentSideFiltSlid = knobCenterXFiltSlid - mouseXFiltSlid; //compute adjacent value of imaginary right angle triangle
+            oppositeSideFiltSlid = knobCenterYFiltSlid - mouseYFiltSlid; //compute opposite value of imaginary right angle triangle
+      
+            //arc-tangent function returns circular angle in radians
+            //use atan2() instead of atan() because atan() returns only 180 degree max (PI radians) but atan2() returns four quadrant's 360 degree max (2PI radians)
+            currentRadiansAngleFiltSlid = Math.atan2(adjacentSideFiltSlid, oppositeSideFiltSlid);
+      
+            getRadiansInDegreesFiltSlid = currentRadiansAngleFiltSlid * 180 / Math.PI; //convert radians into degrees
+      
+            finalAngleInDegreesFiltSlid = -(getRadiansInDegreesFiltSlid - 135); //knob is already starting at -135 degrees due to visual design so 135 degrees needs to be subtracted to compensate for the angle offset, negative value represents clockwise direction
+      
+            //only allow rotate if greater than zero degrees or lesser than 270 degrees
+            if(finalAngleInDegreesFiltSlid >= 0 && finalAngleInDegreesFiltSlid <= 270)
+            {
+                volumeKnobFiltSlid.style.transform = "rotate(" + finalAngleInDegreesFiltSlid + "deg)"; //use dynamic CSS transform to rotate volume knob
+      
+                //270 degrees maximum freedom of rotation / 100% volume = 1% of volume difference per 2.7 degrees of rotation
+                volumeSettingFiltSlid = Math.round(finalAngleInDegreesFiltSlid * (9 / 270) + 0.7);
+      
+                tickHighlightPositionFiltSlid = Math.round((volumeSettingFiltSlid * 27/10)); //interpolate how many ticks need to be highlighted
+                filtQslider = volumeSettingFiltSlid;
+                createTicksFiltSlid(27, tickHighlightPositionFiltSlid); //highlight ticks
+      
+                document.getElementById("volumeValue-filtSlid").innerHTML = volumeSettingFiltSlid; //update volume text
+            }
+        }
+      
+        //dynamically create volume knob "ticks"
+        function createTicksFiltSlid(numTicks, highlightNumTicks)
+        {
+            //reset first by deleting all existing ticks
+            while(tickContainerFiltSlid.firstChild)
+            {
+                tickContainerFiltSlid.removeChild(tickContainerFiltSlid.firstChild);
+            }
+      
+            //create ticks
+            for(var i=0;i<numTicks;i++)
+            {
+                var tickFiltSlid = document.createElement("div");
+      
+                //highlight only the appropriate ticks using dynamic CSS
+                if(i < highlightNumTicks)
+                {
+                    tickFiltSlid.className = "tick activetick";
+                } else {
+                    tickFiltSlid.className = "tick";
+                }
+      
+                tickContainerFiltSlid.appendChild(tickFiltSlid);
+                tickFiltSlid.style.transform = "rotate(" + startingTickAngleFiltSlid + "deg)";
+                startingTickAngleFiltSlid += 10;
+            }
+      
+            startingTickAngleFiltSlid = -135; //reset
+        }
+      
+        //detect for mobile devices from https://www.sitepoint.com/navigator-useragent-mobiles-including-ipad/
+        function detectMobileFiltSlid()
+        {
+            var result = (navigator.userAgent.match(/(iphone)|(ipod)|(ipad)|(android)|(blackberry)|(windows phone)|(symbian)/i));
+      
+            if(result !== null)
+            {
+                return "mobile";
+            } else {
+                return "desktop";
+            }
+        }
+      
+        function getMouseDownFiltSlid()
+        {
+            if(detectMobileFiltSlid() == "desktop")
+            {
+                return "mousedown";
+            } else {
+                return "touchstart";
+            }
+        }
+      
+        function getMouseUpFiltSlid()
+        {
+            if(detectMobileFiltSlid() == "desktop")
+            {
+                return "mouseup";
+            } else {
+                return "touchend";
+            }
+        }
+      
+        function getMouseMoveFiltSlid()
+        {
+            if(detectMobileFiltSlid() == "desktop")
+            {
+                return "mousemove";
+            } else {
+                return "touchmove";
+            }
+        }
+
+        // FiltGain
+
+        function mainFiltGain()
+        {
+            volumeKnobFiltGain.addEventListener(getMouseDownFiltGain(), onMouseDownFiltGain); //listen for mouse button click
+            document.addEventListener(getMouseUpFiltGain(), onMouseUpFiltGain); //listen for mouse button filtGain
+      
+            createTicksFiltGain(27, 0);
+        }
+      
+        //on mouse button down
+        function onMouseDownFiltGain()
+        {
+            document.addEventListener(getMouseMoveFiltGain(), onMouseMoveFiltGain); //start drag
+        }
+      
+        //on mouse button filtGain
+        function onMouseUpFiltGain()
+        {
+            document.removeEventListener(getMouseMoveFiltGain(), onMouseMoveFiltGain); //stop drag
+        }
+      
+        //compute mouse angle relative to center of volume knob
+        //For clarification, see my basic trig explanation at:
+        //https://www.quora.com/What-is-the-significance-of-the-number-pi-to-the-universe/answer/Kevin-Lam-15
+        function onMouseMoveFiltGain(event)
+        {
+            knobPositionXFiltGain = boundingRectangleFiltGain.left; //get knob's global x position
+            knobPositionYFiltGain = boundingRectangleFiltGain.top; //get knob's global y position
+      
+            if(detectMobileFiltGain() == "desktop")
+            {
+                mouseXFiltGain = event.pageX; //get mouse's x global position
+                mouseYFiltGain = event.pageY; //get mouse's y global position
+            } else {
+                mouseXFiltGain = event.touches[0].pageX; //get finger's x global position
+                mouseYFiltGain = event.touches[0].pageY; //get finger's y global position
+            }
+      
+            knobCenterXFiltGain = boundingRectangleFiltGain.width / 2 + knobPositionXFiltGain; //get global horizontal center position of knob relative to mouse position
+            knobCenterYFiltGain = boundingRectangleFiltGain.height / 2 + knobPositionYFiltGain; //get global vertical center position of knob relative to mouse position
+      
+            adjacentSideFiltGain = knobCenterXFiltGain - mouseXFiltGain; //compute adjacent value of imaginary right angle triangle
+            oppositeSideFiltGain = knobCenterYFiltGain - mouseYFiltGain; //compute opposite value of imaginary right angle triangle
+      
+            //arc-tangent function returns circular angle in radians
+            //use atan2() instead of atan() because atan() returns only 180 degree max (PI radians) but atan2() returns four quadrant's 360 degree max (2PI radians)
+            currentRadiansAngleFiltGain = Math.atan2(adjacentSideFiltGain, oppositeSideFiltGain);
+      
+            getRadiansInDegreesFiltGain = currentRadiansAngleFiltGain * 180 / Math.PI; //convert radians into degrees
+      
+            finalAngleInDegreesFiltGain = -(getRadiansInDegreesFiltGain - 135); //knob is already starting at -135 degrees due to visual design so 135 degrees needs to be subtracted to compensate for the angle offset, negative value represents clockwise direction
+      
+            //only allow rotate if greater than zero degrees or lesser than 270 degrees
+            if(finalAngleInDegreesFiltGain >= 0 && finalAngleInDegreesFiltGain <= 270)
+            {
+                volumeKnobFiltGain.style.transform = "rotate(" + finalAngleInDegreesFiltGain + "deg)"; //use dynamic CSS transform to rotate volume knob
+      
+                //270 degrees maximum freedom of rotation / 100% volume = 1% of volume difference per 2.7 degrees of rotation
+                volumeSettingFiltGain = Math.round(finalAngleInDegreesFiltGain * (80 / 270) - 39.7);
+      
+                tickHighlightPositionFiltGain = Math.round(((volumeSettingFiltGain + 40) * 27/80)); //interpolate how many ticks need to be highlighted
+                filtGain = volumeSettingFiltGain;
+                createTicksFiltGain(27, tickHighlightPositionFiltGain); //highlight ticks
+      
+                document.getElementById("volumeValue-filtGain").innerHTML = volumeSettingFiltGain +" dB"; //update volume text
+            }
+        }
+      
+        //dynamically create volume knob "ticks"
+        function createTicksFiltGain(numTicks, highlightNumTicks)
+        {
+            //reset first by deleting all existing ticks
+            while(tickContainerFiltGain.firstChild)
+            {
+                tickContainerFiltGain.removeChild(tickContainerFiltGain.firstChild);
+            }
+      
+            //create ticks
+            for(var i=0;i<numTicks;i++)
+            {
+                var tickFiltGain = document.createElement("div");
+      
+                //highlight only the appropriate ticks using dynamic CSS
+                if(i < highlightNumTicks)
+                {
+                    tickFiltGain.className = "tick activetick";
+                } else {
+                    tickFiltGain.className = "tick";
+                }
+      
+                tickContainerFiltGain.appendChild(tickFiltGain);
+                tickFiltGain.style.transform = "rotate(" + startingTickAngleFiltGain + "deg)";
+                startingTickAngleFiltGain += 10;
+            }
+      
+            startingTickAngleFiltGain = -135; //reset
+        }
+      
+        //detect for mobile devices from https://www.sitepoint.com/navigator-useragent-mobiles-including-ipad/
+        function detectMobileFiltGain()
+        {
+            var result = (navigator.userAgent.match(/(iphone)|(ipod)|(ipad)|(android)|(blackberry)|(windows phone)|(symbian)/i));
+      
+            if(result !== null)
+            {
+                return "mobile";
+            } else {
+                return "desktop";
+            }
+        }
+      
+        function getMouseDownFiltGain()
+        {
+            if(detectMobileFiltGain() == "desktop")
+            {
+                return "mousedown";
+            } else {
+                return "touchstart";
+            }
+        }
+      
+        function getMouseUpFiltGain()
+        {
+            if(detectMobileFiltGain() == "desktop")
+            {
+                return "mouseup";
+            } else {
+                return "touchend";
+            }
+        }
+      
+        function getMouseMoveFiltGain()
+        {
+            if(detectMobileFiltGain() == "desktop")
+            {
+                return "mousemove";
+            } else {
+                return "touchmove";
+            }
+        }
   // Slider Button
 
   //detect for mobile devices from https://www.sitepoint.com/navigator-useragent-mobiles-including-ipad/
@@ -1672,5 +2368,8 @@ function makeDistortionCurve(amount) {
   mainRelease();
   mainDecay();
   mainSustain();
+  mainFrequency();
+  mainFiltSlid();
+  mainFiltGain();
 
 export { showImage, playButton, pianoButton, acousticButton, edmButton, organButton, manualButton};
